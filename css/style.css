@@ -1,4 +1,5 @@
 /* ===== Granite Hills Baseball - Main Stylesheet ===== */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap');
 
 /* --- Reset & Base --- */
 *, *::before, *::after {
@@ -19,8 +20,8 @@
   --gray-600: #6c757d;
   --gray-800: #343a40;
   --gold: #FFD700;
-  --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --font-heading: Georgia, 'Times New Roman', Times, serif;
+  --font-main: 'Barlow Condensed', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-heading: 'Oswald', 'Impact', Arial Narrow, sans-serif;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.15);
   --radius: 8px;
@@ -124,6 +125,9 @@ ul {
   font-size: 1.3rem;
   color: var(--navy);
   line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .logo-text span {
@@ -141,13 +145,14 @@ ul {
 .main-nav a {
   display: block;
   padding: 8px 14px;
+  font-family: var(--font-heading);
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--navy);
   border-radius: var(--radius);
   transition: var(--transition);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .main-nav a:hover,
@@ -213,6 +218,9 @@ ul {
   font-size: 3rem;
   margin-bottom: 16px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
 }
 
 .hero p {
@@ -232,6 +240,7 @@ ul {
 .btn {
   display: inline-block;
   padding: 12px 28px;
+  font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 700;
   border-radius: var(--radius);
@@ -296,6 +305,9 @@ ul {
   font-size: 2.2rem;
   color: var(--navy);
   margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
 }
 
 .section-dark .section-header h2 {
@@ -322,6 +334,9 @@ ul {
   font-family: var(--font-heading);
   font-size: 2.5rem;
   margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
 }
 
 .page-banner p {
@@ -365,9 +380,13 @@ ul {
 }
 
 .card-body h3 {
+  font-family: var(--font-heading);
   font-size: 1.1rem;
   color: var(--navy);
   margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .card-body p {
@@ -395,6 +414,9 @@ ul {
   font-size: 2.5rem;
   color: var(--columbia);
   font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .stat-item p {
@@ -463,6 +485,13 @@ ul {
   padding: 14px 18px;
   text-align: left;
   font-size: 0.95rem;
+}
+
+.schedule-table th {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
 }
 
 .schedule-table tbody tr {
@@ -534,16 +563,23 @@ ul {
 }
 
 .coach-info h3 {
+  font-family: var(--font-heading);
   font-size: 1.2rem;
   color: var(--navy);
   margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .coach-info .title {
+  font-family: var(--font-heading);
   color: var(--columbia-dark);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.9rem;
   margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .coach-info p {
@@ -706,6 +742,9 @@ ul {
   color: var(--white);
   font-size: 1.3rem;
   margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .footer-brand p {
@@ -715,11 +754,13 @@ ul {
 
 .footer-links h4,
 .footer-social h4 {
+  font-family: var(--font-heading);
   color: var(--columbia);
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 14px;
+  font-weight: 600;
 }
 
 .footer-links ul li {
