@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Granite Hills Baseball</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="top-bar"><img src="images/Eagle flying new 2023.png" alt="Eagles"> Granite Hills High School &mdash; Home of the Eagles Baseball <img src="images/Eagle flying new 2023.png" alt="Eagles"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="images/gh new.png" alt="GH Logo"></div>
+        <div class="logo-text">
+          <h1>Granite Hills Baseball</h1>
+          <span>Eagles Athletics</span>
+        </div>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="coaches.html">Coaches</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="records.html">Records</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-banner">
+    <h2>Contact Us</h2>
+    <p>Get in touch with Granite Hills Eagles Baseball</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div class="contact-form">
+          <div class="section-header" style="text-align:left;">
+            <h2>Send a Message</h2>
+            <div class="accent-line" style="margin:0;"></div>
+          </div>
+          <form id="contactForm" onsubmit="return handleContact(event)">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject" required>
+                <option value="">Select a topic...</option>
+                <option value="general">General Inquiry</option>
+                <option value="tryouts">Tryouts Information</option>
+                <option value="recruiting">College Recruiting</option>
+                <option value="booster">Booster Club</option>
+                <option value="media">Media Request</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+
+        <div>
+          <div class="contact-info-card">
+            <h3>Program Information</h3>
+            <div class="info-item">
+              <div class="info-icon">&#128205;</div>
+              <div>
+                <h4>Address</h4>
+                <p>Granite Hills High School<br>El Cajon, CA 92021</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">&#128222;</div>
+              <div>
+                <h4>Athletics Office</h4>
+                <p>(619) 000-0000</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">&#128231;</div>
+              <div>
+                <h4>Email</h4>
+                <p>baseball@granitehills.edu</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">&#128197;</div>
+              <div>
+                <h4>Season</h4>
+                <p>February - May<br>Tryouts: Early February</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">&#9918;</div>
+              <div>
+                <h4>Field Location</h4>
+                <p>Granite Hills Baseball Complex<br>Home games at 3:30 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/Eagle flying new 2023.png" alt="Eagles Logo" class="footer-eagle">
+        <h3>Granite Hills Eagles Baseball</h3>
+        <p>Granite Hills High School's baseball program is committed to developing student-athletes through competitive play, academic achievement, and character building.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#" class="social-icon" title="Twitter">X</a>
+          <a href="#" class="social-icon" title="Instagram">IG</a>
+          <a href="#" class="social-icon" title="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Granite Hills High School Baseball. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

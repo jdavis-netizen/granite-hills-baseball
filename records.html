@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Records - Granite Hills Baseball</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .records-nav { display: flex; justify-content: center; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; }
+    .records-nav a { padding: 10px 20px; background: var(--navy); color: var(--columbia); border-radius: var(--radius); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
+    .records-nav a:hover, .records-nav a.active { background: var(--columbia); color: var(--navy); }
+    .record-category { margin-bottom: 40px; }
+    .record-category h3 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--navy); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 3px solid var(--columbia); }
+    .record-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); margin-bottom: 10px; }
+    .record-table thead { background: var(--navy); color: var(--white); }
+    .record-table th, .record-table td { padding: 10px 14px; text-align: left; font-size: 0.9rem; }
+    .record-table tbody tr { border-bottom: 1px solid var(--gray-100); transition: var(--transition); }
+    .record-table tbody tr:hover { background: rgba(155, 221, 255, 0.1); }
+    .record-table tbody tr:nth-child(even) { background: var(--gray-50); }
+    .record-table tbody tr:nth-child(even):hover { background: rgba(155, 221, 255, 0.1); }
+    .record-table tbody tr:first-child td { font-weight: 700; color: var(--navy); }
+    .record-table .rank-1 { background: rgba(255, 215, 0, 0.1); }
+    .records-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 30px; }
+    @media (max-width: 600px) { .records-grid { grid-template-columns: 1fr; } .record-table th, .record-table td { padding: 8px 10px; font-size: 0.82rem; } }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"><img src="images/Eagle flying new 2023.png" alt="Eagles"> Granite Hills High School &mdash; Home of the Eagles Baseball <img src="images/Eagle flying new 2023.png" alt="Eagles"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="images/gh new.png" alt="GH Logo"></div>
+        <div class="logo-text">
+          <h1>Granite Hills Baseball</h1>
+          <span>Eagles Athletics</span>
+        </div>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="coaches.html">Coaches</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="records.html" class="active">Records</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-banner" style="background: linear-gradient(rgba(0,31,63,0.7), rgba(0,31,63,0.8)), url('images/Cif team 2025.JPG') center/cover no-repeat; padding: 60px 20px;">
+    <h2>All-Time Top Ten Records</h2>
+    <p>Granite Hills Baseball &mdash; Updated January 2025</p>
+  </section>
+
+  <!-- Navigation -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="records-nav">
+        <a href="#season-batting" class="active">Season Batting</a>
+        <a href="#season-pitching">Season Pitching</a>
+        <a href="#career-batting">Career Batting</a>
+        <a href="#career-pitching">Career Pitching</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SINGLE SEASON BATTING -->
+  <section class="section" id="season-batting">
+    <div class="container">
+      <div class="section-header">
+        <h2>Single Season Batting Records</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="records-grid">
+
+        <div class="record-category">
+          <h3>Batting Average</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>AVG</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Sean Bischofberger</td><td>.543</td><td>1997</td></tr>
+              <tr><td>2</td><td>Don Schuldies</td><td>.522</td><td>1970</td></tr>
+              <tr><td>3</td><td>Kevin James</td><td>.521</td><td>2004</td></tr>
+              <tr><td>4</td><td>Brian Giles</td><td>.489</td><td>1989</td></tr>
+              <tr><td>5</td><td>Donnie Carroll</td><td>.485</td><td>1987</td></tr>
+              <tr><td>6</td><td>Luke McRoberts</td><td>.485</td><td>2002</td></tr>
+              <tr><td>7</td><td>Kevin James</td><td>.484</td><td>2003</td></tr>
+              <tr><td>8</td><td>Marcus Giles</td><td>.483</td><td>1995</td></tr>
+              <tr><td>9</td><td>Austin Smith</td><td>.475</td><td>2021</td></tr>
+              <tr><td>10</td><td>John Fenn</td><td>.474</td><td>1989</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Hits</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>H</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Austin Smith</td><td>58</td><td>2021</td></tr>
+              <tr><td>2</td><td>Brian Humphries</td><td>53</td><td>2007</td></tr>
+              <tr><td>3</td><td>Donnie Carroll</td><td>50</td><td>1987</td></tr>
+              <tr><td>4</td><td>Kevin James</td><td>50</td><td>2004</td></tr>
+              <tr><td>5</td><td>Trenton Brooks</td><td>50</td><td>2013</td></tr>
+              <tr><td>6</td><td>Brandon Decker</td><td>49</td><td>2004</td></tr>
+              <tr><td>7</td><td>Mark McRoberts</td><td>48</td><td>2000</td></tr>
+              <tr><td>8</td><td>Brian Humphries</td><td>48</td><td>2006</td></tr>
+              <tr><td>9</td><td>Luke McRoberts</td><td>48</td><td>2002</td></tr>
+              <tr><td>10</td><td>Austin Coleman</td><td>47</td><td>2006</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Home Runs</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>HR</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Travis Taijeron</td><td>15</td><td>2006</td></tr>
+              <tr><td>2</td><td>Mark McRoberts</td><td>15</td><td>2000</td></tr>
+              <tr><td>3</td><td>John Goulart</td><td>12</td><td>1982</td></tr>
+              <tr><td>4</td><td>Damon Hansel</td><td>12</td><td>1985</td></tr>
+              <tr><td>5</td><td>Marcus Giles</td><td>12</td><td>1996</td></tr>
+              <tr><td>6</td><td>Austin Coleman</td><td>11</td><td>2007</td></tr>
+              <tr><td>7</td><td>Travis Taijeron</td><td>11</td><td>2007</td></tr>
+              <tr><td>8</td><td>Brian Giles</td><td>10</td><td>1989</td></tr>
+              <tr><td>9</td><td>Nick Priest</td><td>10</td><td>1997</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>RBI</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>RBI</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Travis Taijeron</td><td>49</td><td>2006</td></tr>
+              <tr><td>2</td><td>Kevin James</td><td>46</td><td>2004</td></tr>
+              <tr><td>3</td><td>Kevin James</td><td>45</td><td>2003</td></tr>
+              <tr><td>4</td><td>Austin Coleman</td><td>45</td><td>2007</td></tr>
+              <tr><td>5</td><td>John Goulart</td><td>44</td><td>1982</td></tr>
+              <tr><td>6</td><td>Damon Hansel</td><td>41</td><td>1985</td></tr>
+              <tr><td>7</td><td>Derek Ayres</td><td>41</td><td>1996</td></tr>
+              <tr><td>8</td><td>Mark McRoberts</td><td>41</td><td>2000</td></tr>
+              <tr><td>9</td><td>Nick Priest</td><td>40</td><td>1997</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Runs</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>R</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Mark McRoberts</td><td>44</td><td>2000</td></tr>
+              <tr><td>2</td><td>Brian Humphries</td><td>42</td><td>2006</td></tr>
+              <tr><td>3</td><td>Brian Humphries</td><td>42</td><td>2007</td></tr>
+              <tr><td>4</td><td>Brandon Decker</td><td>41</td><td>2005</td></tr>
+              <tr><td>5</td><td>Marcus Giles</td><td>41</td><td>1996</td></tr>
+              <tr><td>6</td><td>Sean Bischofberger</td><td>40</td><td>1998</td></tr>
+              <tr><td>7</td><td>Brian Carroll</td><td>40</td><td>2009</td></tr>
+              <tr><td>8</td><td>Brian Giles</td><td>39</td><td>1989</td></tr>
+              <tr><td>9</td><td>Brenden Lewis</td><td>38</td><td>2025</td></tr>
+              <tr><td>10</td><td>Casey Graig</td><td>38</td><td>2003</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Total Bases</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>TB</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Mark McRoberts</td><td>115</td><td>2000</td></tr>
+              <tr><td>2</td><td>Travis Taijeron</td><td>102</td><td>2006</td></tr>
+              <tr><td>3</td><td>Brian Giles</td><td>90</td><td>1989</td></tr>
+              <tr><td>4</td><td>Austin Smith</td><td>90</td><td>2021</td></tr>
+              <tr><td>5</td><td>Austin Coleman</td><td>89</td><td>2007</td></tr>
+              <tr><td>6</td><td>Donnie Carroll</td><td>88</td><td>1987</td></tr>
+              <tr><td>7</td><td>Kevin James</td><td>87</td><td>2004</td></tr>
+              <tr><td>8</td><td>Travis Taijeron</td><td>85</td><td>2007</td></tr>
+              <tr><td>9</td><td>Marcus Giles</td><td>84</td><td>1996</td></tr>
+              <tr><td>10</td><td>Sean Ross</td><td>84</td><td>2017</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Doubles</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>2B</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Austin Smith</td><td>18</td><td>2021</td></tr>
+              <tr><td>2</td><td>Brian Humphries</td><td>17</td><td>2006</td></tr>
+              <tr><td>3</td><td>Sean Ross</td><td>16</td><td>2017</td></tr>
+              <tr><td>4</td><td>Josh Rose</td><td>15</td><td>2013</td></tr>
+              <tr><td>5</td><td>Dylan Garcia</td><td>14</td><td>2009</td></tr>
+              <tr><td>6</td><td>Daniel Starwalt</td><td>13</td><td>2009</td></tr>
+              <tr><td>7</td><td>Kyle Floquet</td><td>13</td><td>1999</td></tr>
+              <tr><td>8</td><td>Charlie St. Clair</td><td>13</td><td>2011</td></tr>
+              <tr><td>9</td><td>Donnie Carroll</td><td>12</td><td>1987</td></tr>
+              <tr><td>10</td><td>Andy Lowry</td><td>11</td><td>2015</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Triples</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>3B</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Don Schuldies</td><td>5</td><td>1970</td></tr>
+              <tr><td>2</td><td>Kent Paine</td><td>5</td><td>1978</td></tr>
+              <tr><td>3</td><td>Brian Carroll</td><td>5</td><td>2009</td></tr>
+              <tr><td>4</td><td>Donnie Carroll</td><td>5</td><td>1987</td></tr>
+              <tr><td>5</td><td>Johnny Coit</td><td>4</td><td>2003</td></tr>
+              <tr><td>6</td><td>Kevin James</td><td>4</td><td>2004</td></tr>
+              <tr><td>7</td><td>Austin Coleman</td><td>4</td><td>2007</td></tr>
+              <tr><td>8</td><td>Aaron Graham</td><td>3</td><td>1977</td></tr>
+              <tr><td>9</td><td>Dale Shrum</td><td>3</td><td>1981</td></tr>
+              <tr><td>10</td><td>Frank Carey</td><td>3</td><td>1983</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Stolen Bases</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>SB</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Frank Carey</td><td>37</td><td>1984</td></tr>
+              <tr><td>2</td><td>Frank Carey</td><td>36</td><td>1985</td></tr>
+              <tr><td>3</td><td>Brian Graham</td><td>30</td><td>1977</td></tr>
+              <tr><td>4</td><td>Brian Carroll</td><td>25</td><td>2009</td></tr>
+              <tr><td>5</td><td>Frank Carey</td><td>22</td><td>1983</td></tr>
+              <tr><td>6</td><td>Todd Smith</td><td>22</td><td>1982</td></tr>
+              <tr><td>7</td><td>Shane Spencer</td><td>20</td><td>1990</td></tr>
+              <tr><td>8</td><td>Ryan Buckley</td><td>20</td><td>2001</td></tr>
+              <tr><td>9</td><td>Mike Smith</td><td>19</td><td>1992</td></tr>
+              <tr><td>10</td><td>Brian Humphries</td><td>19</td><td>2008</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Base On Balls</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>BB</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Grant MacArthur</td><td>39</td><td>2022</td></tr>
+              <tr><td>2</td><td>Tim Harris</td><td>31</td><td>1985</td></tr>
+              <tr><td>3</td><td>Frank Carey</td><td>30</td><td>1984</td></tr>
+              <tr><td>4</td><td>Jeff Waymire</td><td>30</td><td>1989</td></tr>
+              <tr><td>5</td><td>Marcus Giles</td><td>30</td><td>1996</td></tr>
+              <tr><td>6</td><td>Damon Hansel</td><td>28</td><td>1985</td></tr>
+              <tr><td>7</td><td>Marcus Giles</td><td>28</td><td>1995</td></tr>
+              <tr><td>8</td><td>Sean Bischofberger</td><td>28</td><td>1998</td></tr>
+              <tr><td>9</td><td>Frank Carey</td><td>27</td><td>1985</td></tr>
+              <tr><td>10</td><td>Chad Burchett</td><td>26</td><td>1993</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Slugging Percentage</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>SLG</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Damon Hansel</td><td>1.000</td><td>1985</td></tr>
+              <tr><td>2</td><td>Brian Giles</td><td>1.000</td><td>1989</td></tr>
+              <tr><td>3</td><td>John Goulart</td><td>.988</td><td>1982</td></tr>
+              <tr><td>4</td><td>Marcus Giles</td><td>.977</td><td>1996</td></tr>
+              <tr><td>5</td><td>Travis Taijeron</td><td>.953</td><td>2006</td></tr>
+              <tr><td>6</td><td>Travis Taijeron</td><td>.934</td><td>2007</td></tr>
+              <tr><td>7</td><td>Marcus Giles</td><td>.921</td><td>1995</td></tr>
+              <tr><td>8</td><td>Kevin James</td><td>.906</td><td>2004</td></tr>
+              <tr><td>9</td><td>Grant MacArthur</td><td>.863</td><td>2022</td></tr>
+              <tr><td>10</td><td>Austin Coleman</td><td>.807</td><td>2007</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>On Base Percentage</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>OBP</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Sean Bischofberger</td><td>.634</td><td>1997</td></tr>
+              <tr><td>2</td><td>Grant MacArthur</td><td>.611</td><td>2022</td></tr>
+              <tr><td>3</td><td>Marcus Giles</td><td>.607</td><td>1995</td></tr>
+              <tr><td>4</td><td>Kyle Robbins</td><td>.598</td><td>1984</td></tr>
+              <tr><td>5</td><td>Kevin James</td><td>.597</td><td>2004</td></tr>
+              <tr><td>6</td><td>Marcus Giles</td><td>.586</td><td>1996</td></tr>
+              <tr><td>7</td><td>Brian Giles</td><td>.585</td><td>1989</td></tr>
+              <tr><td>8</td><td>George Bishop</td><td>.582</td><td>1987</td></tr>
+              <tr><td>9</td><td>Casey Craig</td><td>.581</td><td>2003</td></tr>
+              <tr><td>10</td><td>Damon Hansel</td><td>.568</td><td>1985</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SINGLE SEASON PITCHING -->
+  <section class="section section-light" id="season-pitching">
+    <div class="container">
+      <div class="section-header">
+        <h2>Single Season Pitching Records</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="records-grid">
+
+        <div class="record-category">
+          <h3>ERA</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>ERA</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Scott Russell</td><td>0.67</td><td>2025</td></tr>
+              <tr><td>2</td><td>Brenden Lewis</td><td>0.80</td><td>2024</td></tr>
+              <tr><td>3</td><td>Brenden Lewis</td><td>0.83</td><td>2023</td></tr>
+              <tr><td>4</td><td>Eric Krause</td><td>0.95</td><td>2006</td></tr>
+              <tr><td>5</td><td>Luke Bailey</td><td>1.02</td><td>2025</td></tr>
+              <tr><td>6</td><td>Jayson Rose</td><td>1.07</td><td>2014</td></tr>
+              <tr><td>7</td><td>Sean Walker</td><td>1.17</td><td>2013</td></tr>
+              <tr><td>8</td><td>Eric Krause</td><td>1.34</td><td>2007</td></tr>
+              <tr><td>9</td><td>Trenton Brooks</td><td>1.34</td><td>2013</td></tr>
+              <tr><td>10</td><td>Mike Ortega</td><td>1.40</td><td>1973</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Wins</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>W</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Luke Bailey</td><td>12</td><td>2025</td></tr>
+              <tr><td>2</td><td>Eric Krause</td><td>12</td><td>2007</td></tr>
+              <tr><td>3</td><td>Eric Krause</td><td>11</td><td>2006</td></tr>
+              <tr><td>4</td><td>Mike Wilson</td><td>11</td><td>1998</td></tr>
+              <tr><td>5</td><td>Bill Demo</td><td>11</td><td>1977</td></tr>
+              <tr><td>6</td><td>Mike Raskind</td><td>10</td><td>1987</td></tr>
+              <tr><td>7</td><td>Scott Hurley</td><td>10</td><td>1995</td></tr>
+              <tr><td>8</td><td>Tony Haymes</td><td>9</td><td>1978</td></tr>
+              <tr><td>9</td><td>Travis Powers</td><td>9</td><td>1994</td></tr>
+              <tr><td>10</td><td>Andrew Brown</td><td>9</td><td>2016</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Strikeouts</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>K</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Eric Krause</td><td>123</td><td>2007</td></tr>
+              <tr><td>2</td><td>Mike Wilson</td><td>118</td><td>1998</td></tr>
+              <tr><td>3</td><td>Ryan O'Coyne</td><td>108</td><td>1991</td></tr>
+              <tr><td>4</td><td>Noa Ponciano</td><td>108</td><td>2021</td></tr>
+              <tr><td>5</td><td>Austin Smith</td><td>107</td><td>2021</td></tr>
+              <tr><td>6</td><td>Jayson Rose</td><td>103</td><td>2014</td></tr>
+              <tr><td>7</td><td>Eric Krause</td><td>102</td><td>2006</td></tr>
+              <tr><td>8</td><td>Trenton Brooks</td><td>95</td><td>2013</td></tr>
+              <tr><td>9</td><td>Mike Raskind</td><td>94</td><td>1988</td></tr>
+              <tr><td>10</td><td>Ryan O'Coyne</td><td>90</td><td>1989</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Innings Pitched</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>IP</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Andrew Brown</td><td>92</td><td>2016</td></tr>
+              <tr><td>2</td><td>Noa Ponciano</td><td>89.1</td><td>2021</td></tr>
+              <tr><td>3</td><td>Trenton Brooks</td><td>89.1</td><td>2013</td></tr>
+              <tr><td>4</td><td>Eric Krause</td><td>89</td><td>2007</td></tr>
+              <tr><td>5</td><td>Eric Krause</td><td>88.1</td><td>2006</td></tr>
+              <tr><td>6</td><td>Ryan O'Coyne</td><td>88</td><td>1989</td></tr>
+              <tr><td>7</td><td>Bill Demo</td><td>87</td><td>1977</td></tr>
+              <tr><td>8</td><td>Jayson Rose</td><td>85</td><td>2014</td></tr>
+              <tr><td>9</td><td>Travis Hopper</td><td>84</td><td>2008</td></tr>
+              <tr><td>10</td><td>Mike Raskind</td><td>82.1</td><td>1987</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Games Pitched</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>GP</th><th>Year</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Eric Krause</td><td>18</td><td>2006</td></tr>
+              <tr><td>2</td><td>Mike Wilson</td><td>18</td><td>1998</td></tr>
+              <tr><td>3</td><td>Tom Fordham</td><td>18</td><td>1992</td></tr>
+              <tr><td>4</td><td>Paul LaFalce</td><td>18</td><td>1994</td></tr>
+              <tr><td>5</td><td>Justin Cole</td><td>18</td><td>1996</td></tr>
+              <tr><td>6</td><td>Paul Meierbachtol</td><td>17</td><td>1976</td></tr>
+              <tr><td>7</td><td>Bill Demo</td><td>17</td><td>1977</td></tr>
+              <tr><td>8</td><td>Mike Leisenring</td><td>17</td><td>1984</td></tr>
+              <tr><td>9</td><td>Ryan O'Coyne</td><td>17</td><td>1990</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER BATTING -->
+  <section class="section" id="career-batting">
+    <div class="container">
+      <div class="section-header">
+        <h2>Career Batting Records</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="records-grid">
+
+        <div class="record-category">
+          <h3>Batting Average</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>AVG</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Marcus Giles</td><td>.447</td><td>1994-96</td></tr>
+              <tr><td>2</td><td>Luke McRoberts</td><td>.439</td><td>2000-02</td></tr>
+              <tr><td>3</td><td>Kevin James</td><td>.434</td><td>2002-04</td></tr>
+              <tr><td>4</td><td>Casey Craig</td><td>.424</td><td>2002-03</td></tr>
+              <tr><td>5</td><td>Brian Humphries</td><td>.421</td><td>2005-08</td></tr>
+              <tr><td>6</td><td>Donnie Carroll</td><td>.418</td><td>1985-87</td></tr>
+              <tr><td>7</td><td>John Fenn</td><td>.409</td><td>1988-90</td></tr>
+              <tr><td>8</td><td>Travis Taijeron</td><td>.392</td><td>2005-07</td></tr>
+              <tr><td>9</td><td>Brandon Decker</td><td>.387</td><td>2003-05</td></tr>
+              <tr><td>10</td><td>Damon Hansel</td><td>.385</td><td>1984-85</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Hits</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>H</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Brian Humphries</td><td>182</td><td>2005-08</td></tr>
+              <tr><td>2</td><td>Jordan Verdon</td><td>136</td><td>2012-15</td></tr>
+              <tr><td>3</td><td>Robert Bostedt</td><td>130</td><td>2011-14</td></tr>
+              <tr><td>4</td><td>Daniel Starwalt</td><td>130</td><td>2009-12</td></tr>
+              <tr><td>5</td><td>Brenden Lewis</td><td>127</td><td>2022-25</td></tr>
+              <tr><td>6</td><td>Dylan Garcia</td><td>126</td><td>2008-10</td></tr>
+              <tr><td>7</td><td>Sean Bischofberger</td><td>121</td><td>1995-98</td></tr>
+              <tr><td>8</td><td>Travis Taijeron</td><td>118</td><td>2005-07</td></tr>
+              <tr><td>9</td><td>Marcus Giles</td><td>117</td><td>1994-96</td></tr>
+              <tr><td>10</td><td>Kyle Floquet</td><td>117</td><td>1998-00</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Home Runs</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>HR</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Travis Taijeron</td><td>33</td><td>2005-07</td></tr>
+              <tr><td>2</td><td>Marcus Giles</td><td>24</td><td>1994-96</td></tr>
+              <tr><td>3</td><td>Mark McRoberts</td><td>23</td><td>1998-00</td></tr>
+              <tr><td>4</td><td>Damon Hansel</td><td>19</td><td>1984-85</td></tr>
+              <tr><td>5</td><td>Brian Giles</td><td>17</td><td>1987-89</td></tr>
+              <tr><td>6</td><td>Derek Ayres</td><td>16</td><td>1995-98</td></tr>
+              <tr><td>7</td><td>Brenden Lewis</td><td>16</td><td>2022-25</td></tr>
+              <tr><td>8</td><td>Grant MacArthur</td><td>16</td><td>2019-22</td></tr>
+              <tr><td>9</td><td>Donnie Carroll</td><td>14</td><td>1985-87</td></tr>
+              <tr><td>10</td><td>Kevin James</td><td>14</td><td>2002-04</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>RBI</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>RBI</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Travis Taijeron</td><td>116</td><td>2005-07</td></tr>
+              <tr><td>2</td><td>Derek Ayres</td><td>103</td><td>1995-98</td></tr>
+              <tr><td>3</td><td>Kevin James</td><td>103</td><td>2002-04</td></tr>
+              <tr><td>4</td><td>Josh Rose</td><td>85</td><td>2010-13</td></tr>
+              <tr><td>5</td><td>Austin Coleman</td><td>84</td><td>2005-07</td></tr>
+              <tr><td>6</td><td>Marcus Giles</td><td>81</td><td>1994-96</td></tr>
+              <tr><td>7</td><td>Brian Humphries</td><td>79</td><td>2005-08</td></tr>
+              <tr><td>8</td><td>Daniel Starwalt</td><td>78</td><td>2009-12</td></tr>
+              <tr><td>9</td><td>Eric Nelson</td><td>78</td><td>1991-94</td></tr>
+              <tr><td>10</td><td>Brenden Lewis</td><td>77</td><td>2022-25</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Runs</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>R</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Brian Humphries</td><td>138</td><td>2005-08</td></tr>
+              <tr><td>2</td><td>Brenden Lewis</td><td>111</td><td>2022-25</td></tr>
+              <tr><td>3</td><td>Marcus Giles</td><td>108</td><td>1994-96</td></tr>
+              <tr><td>4</td><td>Sean Bischofberger</td><td>100</td><td>1995-98</td></tr>
+              <tr><td>5</td><td>Brian Giles</td><td>96</td><td>1987-89</td></tr>
+              <tr><td>6</td><td>Josh Rose</td><td>92</td><td>2010-13</td></tr>
+              <tr><td>7</td><td>John Fenn</td><td>91</td><td>1988-90</td></tr>
+              <tr><td>8</td><td>Travis Taijeron</td><td>90</td><td>2005-07</td></tr>
+              <tr><td>9</td><td>Kyle Floquet</td><td>85</td><td>1998-00</td></tr>
+              <tr><td>10</td><td>Frank Carey</td><td>84</td><td>1983-85</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Total Bases</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>TB</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Brian Humphries</td><td>256</td><td>2005-08</td></tr>
+              <tr><td>2</td><td>Travis Taijeron</td><td>250</td><td>2005-07</td></tr>
+              <tr><td>3</td><td>Marcus Giles</td><td>223</td><td>1994-96</td></tr>
+              <tr><td>4</td><td>Brenden Lewis</td><td>200</td><td>2022-25</td></tr>
+              <tr><td>5</td><td>Derek Ayres</td><td>187</td><td>1995-98</td></tr>
+              <tr><td>6</td><td>Brian Giles</td><td>181</td><td>1987-89</td></tr>
+              <tr><td>7</td><td>Kevin James</td><td>181</td><td>2002-04</td></tr>
+              <tr><td>8</td><td>Sean Bischofberger</td><td>174</td><td>1995-98</td></tr>
+              <tr><td>9</td><td>Donnie Carroll</td><td>168</td><td>1985-87</td></tr>
+              <tr><td>10</td><td>John Fenn</td><td>164</td><td>1988-90</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Stolen Bases</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>SB</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Frank Carey</td><td>95</td><td>1983-85</td></tr>
+              <tr><td>2</td><td>Brian Graham</td><td>58</td><td>1976-78</td></tr>
+              <tr><td>3</td><td>Brian Humphries</td><td>50</td><td>2005-08</td></tr>
+              <tr><td>4</td><td>Aaron Graham</td><td>31</td><td>1976-77</td></tr>
+              <tr><td>5</td><td>Shane Spencer</td><td>31</td><td>1989-90</td></tr>
+              <tr><td>6</td><td>Kyle Floquet</td><td>31</td><td>1998-00</td></tr>
+              <tr><td>7</td><td>Kelly Burton</td><td>30</td><td>1981-82</td></tr>
+              <tr><td>8</td><td>Mike Smith</td><td>30</td><td>1991-92</td></tr>
+              <tr><td>9</td><td>Brandon Decker</td><td>30</td><td>2004-05</td></tr>
+              <tr><td>10</td><td>Casey Craig</td><td>29</td><td>2002-03</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Base On Balls</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>BB</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Marcus Giles</td><td>80</td><td>1994-96</td></tr>
+              <tr><td>2</td><td>Frank Carey</td><td>77</td><td>1983-85</td></tr>
+              <tr><td>3</td><td>Grant MacArthur</td><td>69</td><td>2019-22</td></tr>
+              <tr><td>4</td><td>Chad Burchett</td><td>61</td><td>1991-93</td></tr>
+              <tr><td>5</td><td>Sean Bischofberger</td><td>60</td><td>1995-98</td></tr>
+              <tr><td>6</td><td>Brenden Lewis</td><td>57</td><td>2022-25</td></tr>
+              <tr><td>7</td><td>Brandon Thomas</td><td>56</td><td>1995-97</td></tr>
+              <tr><td>8</td><td>Eric Nelson</td><td>52</td><td>1991-94</td></tr>
+              <tr><td>9</td><td>Jesse Martinez</td><td>51</td><td>1996-98</td></tr>
+              <tr><td>10</td><td>Kyle Robbins</td><td>50</td><td>1984-85</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER PITCHING -->
+  <section class="section section-light" id="career-pitching">
+    <div class="container">
+      <div class="section-header">
+        <h2>Career Pitching Records</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="records-grid">
+
+        <div class="record-category">
+          <h3>ERA</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>ERA</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Eric Krause</td><td>1.61</td><td>2005-07</td></tr>
+              <tr><td>2</td><td>Trenton Brooks</td><td>1.67</td><td>2010-13</td></tr>
+              <tr><td>3</td><td>Brenden Lewis</td><td>1.69</td><td>2022-25</td></tr>
+              <tr><td>4</td><td>Bill Demo</td><td>1.69</td><td>1977</td></tr>
+              <tr><td>5</td><td>Andrew Brown</td><td>1.71</td><td>2015-16</td></tr>
+              <tr><td>6</td><td>Sean Walker</td><td>1.71</td><td>2010-13</td></tr>
+              <tr><td>7</td><td>Dillan Shrum</td><td>1.74</td><td>2015-16</td></tr>
+              <tr><td>8</td><td>Scott Adams</td><td>1.93</td><td>1980-81</td></tr>
+              <tr><td>9</td><td>Chris Dunwell</td><td>1.98</td><td>1997-98</td></tr>
+              <tr><td>10</td><td>Luke Bailey</td><td>2.05</td><td>2024-25</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Wins</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>W</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Eric Krause</td><td>32</td><td>2005-07</td></tr>
+              <tr><td>2</td><td>Brenden Lewis</td><td>24</td><td>2022-25</td></tr>
+              <tr><td>3</td><td>Travis Hopper</td><td>21</td><td>2007-09</td></tr>
+              <tr><td>4</td><td>Chandler Henry</td><td>21</td><td>2021-24</td></tr>
+              <tr><td>5</td><td>Mike Raskind</td><td>20</td><td>1986-88</td></tr>
+              <tr><td>6</td><td>Ryan O'Coyne</td><td>20</td><td>1989-91</td></tr>
+              <tr><td>7</td><td>Daniel Vasquez</td><td>19</td><td>2012-15</td></tr>
+              <tr><td>8</td><td>Mike Wilson</td><td>18</td><td>1995-98</td></tr>
+              <tr><td>9</td><td>Daniel Starwalt</td><td>18</td><td>2009-12</td></tr>
+              <tr><td>10</td><td>Derek Ayres</td><td>17</td><td>1995-98</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Strikeouts</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>K</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Eric Krause</td><td>290</td><td>2005-07</td></tr>
+              <tr><td>2</td><td>Ryan O'Coyne</td><td>286</td><td>1989-91</td></tr>
+              <tr><td>3</td><td>Brenden Lewis</td><td>236</td><td>2022-25</td></tr>
+              <tr><td>4</td><td>Mike Raskind</td><td>212</td><td>1986-88</td></tr>
+              <tr><td>5</td><td>Tom Fordham</td><td>212</td><td>1990-92</td></tr>
+              <tr><td>6</td><td>Noa Ponciano</td><td>176</td><td>2018-21</td></tr>
+              <tr><td>7</td><td>Mike Wilson</td><td>172</td><td>1995-98</td></tr>
+              <tr><td>8</td><td>Austin Smith</td><td>170</td><td>2018-21</td></tr>
+              <tr><td>9</td><td>Matt Seiler</td><td>152</td><td>1992-94</td></tr>
+              <tr><td>10</td><td>Chandler Henry</td><td>149</td><td>2021-24</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Innings Pitched</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>IP</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Eric Krause</td><td>249</td><td>2005-07</td></tr>
+              <tr><td>2</td><td>Ryan O'Coyne</td><td>239.2</td><td>1989-91</td></tr>
+              <tr><td>3</td><td>Brenden Lewis</td><td>212.2</td><td>2022-25</td></tr>
+              <tr><td>4</td><td>Mike Raskind</td><td>200.1</td><td>1986-88</td></tr>
+              <tr><td>5</td><td>Noa Ponciano</td><td>183.4</td><td>2018-21</td></tr>
+              <tr><td>6</td><td>Donald Anderson</td><td>182.2</td><td>2003-05</td></tr>
+              <tr><td>7</td><td>Tom Fordham</td><td>172.2</td><td>1990-92</td></tr>
+              <tr><td>8</td><td>Chandler Henry</td><td>154.3</td><td>2021-24</td></tr>
+              <tr><td>9</td><td>Derek Ayres</td><td>153</td><td>1995-98</td></tr>
+              <tr><td>10</td><td>Mike Wilson</td><td>152.1</td><td>1995-98</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="record-category">
+          <h3>Games Pitched</h3>
+          <table class="record-table">
+            <thead><tr><th>#</th><th>Name</th><th>GP</th><th>Years</th></tr></thead>
+            <tbody>
+              <tr class="rank-1"><td>1</td><td>Brenden Lewis</td><td>54</td><td>2022-25</td></tr>
+              <tr><td>2</td><td>Eric Krause</td><td>47</td><td>2005-07</td></tr>
+              <tr><td>3</td><td>Ryan O'Coyne</td><td>46</td><td>1989-91</td></tr>
+              <tr><td>4</td><td>Tom Fordham</td><td>46</td><td>1990-92</td></tr>
+              <tr><td>5</td><td>Mike Raskind</td><td>43</td><td>1986-88</td></tr>
+              <tr><td>6</td><td>Mike Wilson</td><td>42</td><td>1995-98</td></tr>
+              <tr><td>7</td><td>Donald Anderson</td><td>41</td><td>2003-05</td></tr>
+              <tr><td>8</td><td>Matt Seiler</td><td>40</td><td>1992-94</td></tr>
+              <tr><td>9</td><td>Cory Waterhouse</td><td>39</td><td>1991-93</td></tr>
+              <tr><td>10</td><td>Darren Gay</td><td>36</td><td>2005-07</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/Eagle flying new 2023.png" alt="Eagles Logo" class="footer-eagle">
+        <h3>Granite Hills Eagles Baseball</h3>
+        <p>Granite Hills High School's baseball program is committed to developing student-athletes through competitive play, academic achievement, and character building.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="records.html">Records</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#" class="social-icon" title="Twitter">X</a>
+          <a href="#" class="social-icon" title="Instagram">IG</a>
+          <a href="#" class="social-icon" title="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Granite Hills High School Baseball. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
