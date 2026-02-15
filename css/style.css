@@ -809,6 +809,80 @@ ul {
   color: var(--gray-600);
 }
 
+/* --- News Era Navigation --- */
+.era-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.era-nav a {
+  display: inline-block;
+  padding: 10px 22px;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--white);
+  border: 2px solid var(--navy);
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: var(--transition);
+}
+
+.era-nav a:hover,
+.era-nav a.active {
+  background: var(--navy);
+  color: var(--columbia);
+}
+
+.era-section {
+  margin-bottom: 50px;
+}
+
+.era-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--navy);
+}
+
+.era-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.era-header .era-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--navy);
+  color: var(--columbia);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.news-source {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--columbia-dark);
+  font-style: italic;
+}
+
 /* --- Responsive --- */
 @media (max-width: 900px) {
   .hamburger {
