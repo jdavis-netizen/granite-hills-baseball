@@ -42,16 +42,91 @@
 
   <section class="page-banner">
     <h2>2026 Team Roster</h2>
-    <p>Meet the Eagles who take the field this season</p>
+    <p>Players who have made the JV and Freshman teams</p>
   </section>
 
   <section class="section">
     <div class="container">
-      <div style="text-align:center; padding:40px 20px;">
-        <img src="images/Eagle head   new 2023.png" alt="Eagles" style="width:120px; height:auto; margin-bottom:20px;">
-        <h3 style="font-family:var(--font-heading); font-size:1.5rem; color:var(--navy); text-transform:uppercase; letter-spacing:2px; margin-bottom:10px;">2026 Roster Coming Soon</h3>
-        <p style="color:#6c757d; font-size:1rem;">The official 2026 Eagles roster will be posted once the season begins. Check back soon!</p>
+
+      <div style="text-align:center; margin-bottom:30px;">
+        <p style="color:#6c757d; font-size:0.95rem;">If your student ID number appears below, congratulations — you have made the team!</p>
       </div>
+
+      <!-- Roster Tabs -->
+      <div class="roster-tabs" style="display:flex; justify-content:center; gap:10px; margin-bottom:30px;">
+        <button class="roster-tab active" onclick="showRoster('jv')" id="tab-jv" style="padding:12px 32px; font-family:var(--font-heading); font-size:1.1rem; text-transform:uppercase; letter-spacing:2px; border:2px solid var(--navy); background:var(--navy); color:var(--white); border-radius:6px; cursor:pointer; transition:all 0.3s ease;">JV</button>
+        <button class="roster-tab" onclick="showRoster('frosh')" id="tab-frosh" style="padding:12px 32px; font-family:var(--font-heading); font-size:1.1rem; text-transform:uppercase; letter-spacing:2px; border:2px solid var(--navy); background:transparent; color:var(--navy); border-radius:6px; cursor:pointer; transition:all 0.3s ease;">Freshman</button>
+      </div>
+
+      <!-- JV Roster -->
+      <div id="roster-jv" class="roster-panel">
+        <div class="section-header" style="text-align:center; margin-bottom:20px;">
+          <h3 style="font-family:var(--font-heading); font-size:1.4rem; color:var(--navy); text-transform:uppercase; letter-spacing:2px;">Junior Varsity</h3>
+          <div class="accent-line" style="margin:8px auto 0;"></div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="roster-table" style="max-width:400px; margin:0 auto;">
+            <thead>
+              <tr><th style="text-align:center;">Student ID</th></tr>
+            </thead>
+            <tbody>
+              <tr><td style="text-align:center;">382392</td></tr>
+              <tr><td style="text-align:center;">383659</td></tr>
+              <tr><td style="text-align:center;">384104</td></tr>
+              <tr><td style="text-align:center;">384300</td></tr>
+              <tr><td style="text-align:center;">384468</td></tr>
+              <tr><td style="text-align:center;">385321</td></tr>
+              <tr><td style="text-align:center;">385388</td></tr>
+              <tr><td style="text-align:center;">386849</td></tr>
+              <tr><td style="text-align:center;">386850</td></tr>
+              <tr><td style="text-align:center;">390790</td></tr>
+              <tr><td style="text-align:center;">390869</td></tr>
+              <tr><td style="text-align:center;">390974</td></tr>
+              <tr><td style="text-align:center;">390984</td></tr>
+              <tr><td style="text-align:center;">390995</td></tr>
+              <tr><td style="text-align:center;">391000</td></tr>
+              <tr><td style="text-align:center;">391015</td></tr>
+              <tr><td style="text-align:center;">392136</td></tr>
+              <tr><td style="text-align:center;">392865</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Frosh Roster -->
+      <div id="roster-frosh" class="roster-panel" style="display:none;">
+        <div class="section-header" style="text-align:center; margin-bottom:20px;">
+          <h3 style="font-family:var(--font-heading); font-size:1.4rem; color:var(--navy); text-transform:uppercase; letter-spacing:2px;">Freshman</h3>
+          <div class="accent-line" style="margin:8px auto 0;"></div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="roster-table" style="max-width:400px; margin:0 auto;">
+            <thead>
+              <tr><th style="text-align:center;">Student ID</th></tr>
+            </thead>
+            <tbody>
+              <tr><td style="text-align:center;">390029</td></tr>
+              <tr><td style="text-align:center;">390168</td></tr>
+              <tr><td style="text-align:center;">390655</td></tr>
+              <tr><td style="text-align:center;">390695</td></tr>
+              <tr><td style="text-align:center;">390713</td></tr>
+              <tr><td style="text-align:center;">390718</td></tr>
+              <tr><td style="text-align:center;">390749</td></tr>
+              <tr><td style="text-align:center;">390784</td></tr>
+              <tr><td style="text-align:center;">390896</td></tr>
+              <tr><td style="text-align:center;">390986</td></tr>
+              <tr><td style="text-align:center;">391008</td></tr>
+              <tr><td style="text-align:center;">391066</td></tr>
+              <tr><td style="text-align:center;">391067</td></tr>
+              <tr><td style="text-align:center;">391071</td></tr>
+              <tr><td style="text-align:center;">392738</td></tr>
+              <tr><td style="text-align:center;">392762</td></tr>
+              <tr><td style="text-align:center;">395307</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -87,5 +162,18 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    function showRoster(team) {
+      document.querySelectorAll('.roster-panel').forEach(function(p) { p.style.display = 'none'; });
+      document.getElementById('roster-' + team).style.display = 'block';
+      document.querySelectorAll('.roster-tab').forEach(function(t) {
+        t.style.background = 'transparent';
+        t.style.color = '#001f3f';
+      });
+      var active = document.getElementById('tab-' + team);
+      active.style.background = '#001f3f';
+      active.style.color = '#ffffff';
+    }
+  </script>
 </body>
 </html>
