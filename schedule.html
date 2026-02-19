@@ -6,6 +6,39 @@
   <title>Schedule - Granite Hills Baseball</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="images/Eagle head   new 2023.png">
+  <style>
+    .level-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 30px;
+    }
+    .level-tab {
+      padding: 12px 32px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 2px solid var(--columbia-dark, #6EC8F2);
+      background: transparent;
+      color: var(--columbia-dark, #6EC8F2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .level-tab:first-child { border-radius: 6px 0 0 6px; }
+    .level-tab:last-child { border-radius: 0 6px 6px 0; }
+    .level-tab:not(:last-child) { border-right: none; }
+    .level-tab.active {
+      background: var(--columbia-dark, #6EC8F2);
+      color: var(--navy, #001f3f);
+    }
+    .level-tab:hover:not(.active) {
+      background: rgba(110, 200, 242, 0.15);
+    }
+    .schedule-level { display: none; }
+    .schedule-level.active { display: block; }
+  </style>
 </head>
 <body>
 
@@ -47,207 +80,601 @@
 
   <section class="section">
     <div class="container">
-      <div class="section-header">
-        <h2>Non-League / Tournament</h2>
-        <div class="accent-line"></div>
-      </div>
-      <div style="overflow-x: auto;">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Opponent</th>
-              <th>Location</th>
-              <th>Time</th>
-              <th>Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Mar 3</td>
-              <td>Del Norte</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>3:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-            <tr>
-              <td>Mar 5</td>
-              <td>San Marcos</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>3:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-            <tr>
-              <td>Mar 10</td>
-              <td>La Costa Canyon</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>3:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-            <tr>
-              <td>Mar 12</td>
-              <td>Santana</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>3:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-            <tr>
-              <td>Mar 13</td>
-              <td>Cathedral Catholic</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>3:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-            <tr>
-              <td>Mar 16</td>
-              <td>St. Augustine</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>4:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-            <tr>
-              <td>Mar 18</td>
-              <td>Coronado</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>4:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-            <tr>
-              <td>Mar 20</td>
-              <td>Cathedral Catholic</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>4:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-            <tr>
-              <td>Mar 23</td>
-              <td>Point Loma</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>4:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-            <tr>
-              <td>Mar 25</td>
-              <td>Patrick Henry</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>4:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-            <tr>
-              <td>Mar 31</td>
-              <td>La Costa Canyon</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>1:00 PM</td>
-              <td>Tournament</td>
-            </tr>
-          </tbody>
-        </table>
+
+      <!-- Level Tabs -->
+      <div class="level-tabs">
+        <button class="level-tab active" onclick="showLevel('varsity')">Varsity</button>
+        <button class="level-tab" onclick="showLevel('jv')">JV</button>
+        <button class="level-tab" onclick="showLevel('freshman')">Freshman</button>
       </div>
 
-      <div class="section-header" style="margin-top: 50px;">
-        <h2>League Games</h2>
-        <div class="accent-line"></div>
+      <!-- ===================== VARSITY ===================== -->
+      <div id="varsity" class="schedule-level active">
+        <div class="section-header">
+          <h2>Non-League / Tournament</h2>
+          <div class="accent-line"></div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Opponent</th>
+                <th>Location</th>
+                <th>Time</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mar 3</td>
+                <td>Del Norte</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>3:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 5</td>
+                <td>San Marcos</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>3:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 10</td>
+                <td>La Costa Canyon</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>3:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 12</td>
+                <td>Santana</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>3:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 13</td>
+                <td>Cathedral Catholic</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>3:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 16</td>
+                <td>St. Augustine</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 18</td>
+                <td>Coronado</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 20</td>
+                <td>Cathedral Catholic</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 23</td>
+                <td>Point Loma</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 25</td>
+                <td>Patrick Henry</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 30</td>
+                <td>El Camino Real</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>TBA</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 31</td>
+                <td>La Costa Canyon</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>1:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Apr 1</td>
+                <td>St. Augustine</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-header" style="margin-top: 50px;">
+          <h2>League Games</h2>
+          <div class="accent-line"></div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Opponent</th>
+                <th>Location</th>
+                <th>Time</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apr 8</td>
+                <td>Helix</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 10</td>
+                <td>Helix</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 14</td>
+                <td>El Capitan</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 16</td>
+                <td>El Capitan</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 21</td>
+                <td>Grossmont</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 23</td>
+                <td>Grossmont</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 30</td>
+                <td>Valhalla</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>May 1</td>
+                <td>Valhalla</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>May 5</td>
+                <td>Helix</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>May 7</td>
+                <td>El Capitan</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>May 8</td>
+                <td>Grossmont</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>May 14</td>
+                <td>Valhalla</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="text-align:center; margin-top:20px; font-size:0.85rem; color:#6c757d;">Schedule data from <a href="https://www.maxpreps.com/ca/el-cajon/granite-hills-eagles/baseball/schedule/" target="_blank" style="color:#6EC8F2;">MaxPreps</a> &mdash; 25 Games (13 Non-League, 12 League)</p>
       </div>
-      <div style="overflow-x: auto;">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Opponent</th>
-              <th>Location</th>
-              <th>Time</th>
-              <th>Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Apr 8</td>
-              <td>Helix</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>Apr 10</td>
-              <td>Helix</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>Apr 14</td>
-              <td>El Capitan</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>Apr 16</td>
-              <td>El Capitan</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>Apr 21</td>
-              <td>Grossmont</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>Apr 23</td>
-              <td>Grossmont</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>Apr 30</td>
-              <td>Valhalla</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>May 1</td>
-              <td>Valhalla</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>May 5</td>
-              <td>Helix</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>May 7</td>
-              <td>El Capitan</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>May 8</td>
-              <td>Grossmont</td>
-              <td><span class="badge badge-away">Away</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-            <tr>
-              <td>May 14</td>
-              <td>Valhalla</td>
-              <td><span class="badge badge-home">Home</span></td>
-              <td>4:00 PM</td>
-              <td>League</td>
-            </tr>
-          </tbody>
-        </table>
+
+      <!-- ===================== JV ===================== -->
+      <div id="jv" class="schedule-level">
+        <div class="section-header">
+          <h2>Non-League / Tournament</h2>
+          <div class="accent-line"></div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Opponent</th>
+                <th>Location</th>
+                <th>Time</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mar 3</td>
+                <td>Del Norte</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>3:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 5</td>
+                <td>San Marcos</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>3:00 PM</td>
+                <td>Non-League</td>
+              </tr>
+              <tr>
+                <td>Mar 7</td>
+                <td>Eastlake</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>10:30 AM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 12</td>
+                <td>Santana</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>3:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 13</td>
+                <td>Eastlake</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>3:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 16</td>
+                <td>St. Augustine</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 18</td>
+                <td>Coronado</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 20</td>
+                <td>Cathedral Catholic</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 23</td>
+                <td>Point Loma</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 25</td>
+                <td>Patrick Henry</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Mar 30</td>
+                <td>Scripps Ranch</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>1:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Apr 1</td>
+                <td>Carson</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>1:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+              <tr>
+                <td>Apr 2</td>
+                <td>University City</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>Tournament</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-header" style="margin-top: 50px;">
+          <h2>League Games</h2>
+          <div class="accent-line"></div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Opponent</th>
+                <th>Location</th>
+                <th>Time</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apr 8</td>
+                <td>Helix</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 10</td>
+                <td>Helix</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 14</td>
+                <td>El Capitan</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 16</td>
+                <td>El Capitan</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 21</td>
+                <td>Grossmont</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 23</td>
+                <td>Grossmont</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 24</td>
+                <td>Grossmont</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 28</td>
+                <td>Helix</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 30</td>
+                <td>Helix</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>May 5</td>
+                <td>El Capitan</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>May 7</td>
+                <td>El Capitan</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>May 12</td>
+                <td>Grossmont</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="text-align:center; margin-top:20px; font-size:0.85rem; color:#6c757d;">Schedule data from <a href="https://www.maxpreps.com/ca/el-cajon/granite-hills-eagles/baseball/jv/schedule/" target="_blank" style="color:#6EC8F2;">MaxPreps</a> &mdash; 25 Games (13 Non-League, 12 League)</p>
       </div>
-      <p style="text-align:center; margin-top:20px; font-size:0.85rem; color:#6c757d;">Schedule data from <a href="https://www.maxpreps.com/ca/el-cajon/granite-hills-eagles/baseball/schedule/" target="_blank" style="color:#6EC8F2;">MaxPreps</a> &mdash; Record: 0-0 (0-0 League)</p>
+
+      <!-- ===================== FRESHMAN ===================== -->
+      <div id="freshman" class="schedule-level">
+        <div class="section-header">
+          <h2>Freshman League Games</h2>
+          <div class="accent-line"></div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Opponent</th>
+                <th>Location</th>
+                <th>Time</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mar 2</td>
+                <td>Steele Canyon</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Mar 4</td>
+                <td>El Capitan</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Mar 7</td>
+                <td>Santana</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>10:30 AM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Mar 9</td>
+                <td>Helix</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Mar 11</td>
+                <td>Grossmont</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Mar 16</td>
+                <td>West Hills</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Mar 18</td>
+                <td>Steele Canyon</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Mar 21</td>
+                <td>El Capitan</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>10:30 AM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Mar 23</td>
+                <td>Santana</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Mar 25</td>
+                <td>West Hills</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Mar 28</td>
+                <td>Helix</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>10:30 AM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 8</td>
+                <td>Grossmont</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 13</td>
+                <td>Santana</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 15</td>
+                <td>Steele Canyon</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 20</td>
+                <td>El Capitan</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 22</td>
+                <td>West Hills</td>
+                <td><span class="badge badge-away">Away</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 27</td>
+                <td>Grossmont</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+              <tr>
+                <td>Apr 29</td>
+                <td>Helix</td>
+                <td><span class="badge badge-home">Home</span></td>
+                <td>4:00 PM</td>
+                <td>League</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="text-align:center; margin-top:20px; font-size:0.85rem; color:#6c757d;">Schedule data from <a href="https://www.maxpreps.com/ca/el-cajon/granite-hills-eagles/baseball/freshman/schedule/" target="_blank" style="color:#6EC8F2;">MaxPreps</a> &mdash; 18 League Games</p>
+      </div>
 
       <!-- NFHS Network Banner -->
       <div style="margin-top:30px; background: linear-gradient(135deg, #001f3f, #003366); border-radius:12px; padding:30px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
@@ -290,5 +717,13 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    function showLevel(level) {
+      document.querySelectorAll('.schedule-level').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.level-tab').forEach(el => el.classList.remove('active'));
+      document.getElementById(level).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
 </body>
 </html>
