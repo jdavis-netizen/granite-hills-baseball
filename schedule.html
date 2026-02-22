@@ -90,6 +90,16 @@
 
       <!-- ===================== VARSITY ===================== -->
       <div id="varsity" class="schedule-level active">
+
+        <!-- GameChanger Live Schedule Widget -->
+        <div class="section-header">
+          <h2>Live Schedule</h2>
+          <div class="accent-line"></div>
+        </div>
+        <div style="margin-bottom:40px;">
+          <div id="gc-schedule-widget-ru77"></div>
+        </div>
+
         <div class="section-header">
           <h2>Non-League / Tournament</h2>
           <div class="accent-line"></div>
@@ -717,6 +727,14 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="https://widgets.gc.com/static/js/sdk.v1.js"></script>
+  <script>
+    window.GC.team.schedule.init({
+      target: "#gc-schedule-widget-ru77",
+      widgetId: "e4ef5adf-9f5e-4b05-9e09-c847807b09ff",
+      maxVerticalGamesVisible: 4,
+    });
+  </script>
   <script>
     function showLevel(level) {
       document.querySelectorAll('.schedule-level').forEach(el => el.classList.remove('active'));
