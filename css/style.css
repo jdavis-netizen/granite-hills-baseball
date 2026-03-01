@@ -883,6 +883,171 @@ ul {
   font-style: italic;
 }
 
+/* --- Player Tracker Cards --- */
+.tracker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.tracker-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: var(--transition);
+  border-top: 4px solid var(--navy);
+}
+
+.tracker-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.tracker-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.tracker-level {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tracker-level-mlb {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.tracker-level-pro {
+  background: linear-gradient(135deg, var(--gold), #e6c200);
+  color: var(--navy);
+}
+
+.tracker-level-milb {
+  background: var(--navy);
+  color: var(--columbia);
+}
+
+.tracker-level-d1 {
+  background: #1a5276;
+  color: var(--white);
+}
+
+.tracker-level-d2 {
+  background: #2e86c1;
+  color: var(--white);
+}
+
+.tracker-level-d3 {
+  background: #5dade2;
+  color: var(--white);
+}
+
+.tracker-level-naia {
+  background: #7d3c98;
+  color: var(--white);
+}
+
+.tracker-level-juco {
+  background: #28a745;
+  color: var(--white);
+}
+
+.tracker-season {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tracker-card-body {
+  padding: 20px 16px;
+}
+
+.tracker-card-body h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.tracker-team {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--columbia-dark);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.tracker-meta {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  margin-bottom: 16px;
+}
+
+.tracker-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  background: var(--navy);
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.tracker-stat {
+  text-align: center;
+  padding: 10px 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.tracker-stat-value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--columbia);
+  letter-spacing: 0.5px;
+}
+
+.tracker-stat-label {
+  display: block;
+  font-size: 0.65rem;
+  color: rgba(155, 221, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.tracker-card-footer {
+  padding: 10px 16px;
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-100);
+  font-size: 0.7rem;
+  color: var(--gray-600);
+  text-align: right;
+  font-style: italic;
+}
+
 /* --- Responsive --- */
 @media (max-width: 900px) {
   .hamburger {
