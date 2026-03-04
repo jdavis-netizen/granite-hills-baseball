@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stats - Granite Hills Baseball</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/Eagle head   new 2023.png">
+  <style>
+    .stats-table-wrap { overflow-x: auto; margin-bottom: 30px; }
+    .stats-tbl {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      font-size: 0.88rem;
+      min-width: 800px;
+    }
+    .stats-tbl thead { background: var(--navy); color: var(--white); }
+    .stats-tbl th {
+      padding: 12px 10px;
+      font-family: var(--font-heading);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .stats-tbl th:nth-child(2) { text-align: left; }
+    .stats-tbl td {
+      padding: 11px 10px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .stats-tbl td:nth-child(2) { text-align: left; font-weight: 600; }
+    .stats-tbl tbody tr { border-bottom: 1px solid var(--gray-100); transition: var(--transition); }
+    .stats-tbl tbody tr:hover { background: rgba(155, 221, 255, 0.1); }
+    .stats-tbl tbody tr:nth-child(even) { background: var(--gray-50); }
+    .stats-tbl tbody tr:nth-child(even):hover { background: rgba(155, 221, 255, 0.1); }
+    .stats-tbl .totals-row {
+      background: var(--navy) !important;
+      color: var(--white);
+      font-weight: 700;
+    }
+    .stats-tbl .totals-row:hover { background: var(--navy-light) !important; }
+    .stats-tbl .highlight { color: var(--columbia-dark); font-weight: 700; }
+    .stats-note {
+      text-align: center;
+      color: var(--gray-600);
+      font-size: 0.85rem;
+      margin-top: 10px;
+    }
+    .stats-note a { color: var(--columbia-dark); text-decoration: underline; }
+    .record-bar { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 30px; }
+    .record-bar .stat-item { text-align: center; }
+    .record-bar .stat-item h3 { font-family: var(--font-heading); font-size: 2rem; color: var(--navy); }
+    .record-bar .stat-item p { font-size: 0.85rem; color: var(--gray-600); text-transform: uppercase; letter-spacing: 1px; }
+    @media (max-width: 768px) {
+      .stats-tbl { font-size: 0.8rem; min-width: 650px; }
+      .stats-tbl th, .stats-tbl td { padding: 8px 6px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"><img src="images/Eagle flying new 2023.png" alt="Eagles"> Granite Hills High School &mdash; Home of the Eagles Baseball <img src="images/Eagle flying new 2023.png" alt="Eagles"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="images/gh new.png" alt="GH Logo"></div>
+        <div class="logo-text">
+          <h1>Granite Hills Baseball</h1>
+          <span>Eagles Athletics</span>
+        </div>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="stats.html" class="active">Stats</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="coaches.html">Coaches</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="records.html">Records</a></li>
+          <li><a href="alumni.html">Alumni</a></li>
+          <li><a href="tracker.html">Tracker</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-banner">
+    <h2>2026 Player Stats</h2>
+    <p>Individual Batting &amp; Pitching Statistics</p>
+  </section>
+
+  <!-- Team Summary -->
+  <section class="section section-dark" style="padding: 25px 0;">
+    <div class="container">
+      <div class="stats-bar">
+        <div class="stat-item">
+          <h3>1-0</h3>
+          <p>Record</p>
+        </div>
+        <div class="stat-item">
+          <h3>.292</h3>
+          <p>Team AVG</p>
+        </div>
+        <div class="stat-item">
+          <h3>.419</h3>
+          <p>Team OBP</p>
+        </div>
+        <div class="stat-item">
+          <h3>.417</h3>
+          <p>Team SLG</p>
+        </div>
+        <div class="stat-item">
+          <h3>7</h3>
+          <p>Runs</p>
+        </div>
+        <div class="stat-item">
+          <h3>5.00</h3>
+          <p>Team ERA</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Batting Stats -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Batting</h2>
+        <div class="accent-line"></div>
+      </div>
+
+      <div class="stats-table-wrap">
+        <table class="stats-tbl">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>GP</th>
+              <th>AVG</th>
+              <th>PA</th>
+              <th>AB</th>
+              <th>R</th>
+              <th>H</th>
+              <th>RBI</th>
+              <th>2B</th>
+              <th>3B</th>
+              <th>HR</th>
+              <th>BB</th>
+              <th>K</th>
+              <th>HBP</th>
+              <th>SB</th>
+              <th>OBP</th>
+              <th>SLG</th>
+              <th>OPS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Jesse Maddox</td>
+              <td>1</td>
+              <td>.500</td>
+              <td>3</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>.333</td>
+              <td>.500</td>
+              <td>.833</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Jaden Macias</td>
+              <td>1</td>
+              <td>.333</td>
+              <td>3</td>
+              <td>3</td>
+              <td>0</td>
+              <td>1</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>.333</td>
+              <td>.333</td>
+              <td>.666</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Brodey Vicars</td>
+              <td>1</td>
+              <td>.000</td>
+              <td>3</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>.667</td>
+              <td>.000</td>
+              <td>.667</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Jake Ervin</td>
+              <td>1</td>
+              <td>.333</td>
+              <td>4</td>
+              <td>3</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>.500</td>
+              <td>.333</td>
+              <td>.833</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Scott Russell</td>
+              <td>1</td>
+              <td>.333</td>
+              <td>3</td>
+              <td>3</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>.333</td>
+              <td>.333</td>
+              <td>.666</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>Anthony Miotti</td>
+              <td>1</td>
+              <td>.000</td>
+              <td>4</td>
+              <td>3</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>.250</td>
+              <td>.000</td>
+              <td>.250</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>Preston Hendry</td>
+              <td>1</td>
+              <td>.000</td>
+              <td>2</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>.000</td>
+              <td>.000</td>
+              <td>.000</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>Colton Windham</td>
+              <td>1</td>
+              <td>.333</td>
+              <td>4</td>
+              <td>3</td>
+              <td>2</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>.500</td>
+              <td>1.000</td>
+              <td>1.500</td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>Eurijah Schutza</td>
+              <td>1</td>
+              <td>.333</td>
+              <td>4</td>
+              <td>3</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>.500</td>
+              <td>.333</td>
+              <td>.833</td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td>Calvin Jones</td>
+              <td>1</td>
+              <td>1.000</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1.000</td>
+              <td>2.000</td>
+              <td>3.000</td>
+            </tr>
+            <tr class="totals-row">
+              <td></td>
+              <td>TOTALS</td>
+              <td>1</td>
+              <td>.292</td>
+              <td>31</td>
+              <td>24</td>
+              <td>7</td>
+              <td>7</td>
+              <td>6</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>5</td>
+              <td>3</td>
+              <td>1</td>
+              <td>1</td>
+              <td>.419</td>
+              <td>.417</td>
+              <td>.836</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-header">
+        <h2>Pitching</h2>
+        <div class="accent-line"></div>
+      </div>
+
+      <div class="stats-table-wrap">
+        <table class="stats-tbl">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>ERA</th>
+              <th>W</th>
+              <th>L</th>
+              <th>SV</th>
+              <th>APP</th>
+              <th>IP</th>
+              <th>H</th>
+              <th>R</th>
+              <th>ER</th>
+              <th>BB</th>
+              <th>K</th>
+              <th>#P</th>
+              <th>OBA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>19</td>
+              <td>Hoss Harper</td>
+              <td>2.33</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>6.0</td>
+              <td>4</td>
+              <td>2</td>
+              <td>2</td>
+              <td>3</td>
+              <td>3</td>
+              <td>83</td>
+              <td>.190</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Jaden Macias</td>
+              <td>31.50</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>2</td>
+              <td>3</td>
+              <td>3</td>
+              <td>2</td>
+              <td>2</td>
+              <td>26</td>
+              <td>.500</td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>Eurijah Schutza</td>
+              <td>0.00</td>
+              <td>0</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0.1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>4</td>
+              <td>.000</td>
+            </tr>
+            <tr class="totals-row">
+              <td></td>
+              <td>TOTALS</td>
+              <td>5.00</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td></td>
+              <td>7.0</td>
+              <td>6</td>
+              <td>5</td>
+              <td>5</td>
+              <td>5</td>
+              <td>5</td>
+              <td>113</td>
+              <td>.231</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="stats-note">Stats updated through 1 game (1-0) &mdash; Source: <a href="https://www.maxpreps.com/ca/el-cajon/granite-hills-eagles/baseball/stats/" target="_blank">MaxPreps</a></p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/Eagle flying new 2023.png" alt="Eagles Logo" class="footer-eagle">
+        <h3>Granite Hills Eagles Baseball</h3>
+        <p>Granite Hills High School's baseball program is committed to developing student-athletes through competitive play, academic achievement, and character building.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="stats.html">Stats</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://x.com/granitehillsbb" target="_blank" class="social-icon" title="Twitter/X">X</a>
+          <a href="#" class="social-icon" title="Instagram">IG</a>
+          <a href="#" class="social-icon" title="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Granite Hills High School Baseball. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
