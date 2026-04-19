@@ -17,7 +17,62 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+
+  // ===== Scroll Reveal Animations =====
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    // Fallback: just show everything
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  // ===== Count-up Animation for Stat Numbers =====
+  const countEls = document.querySelectorAll('.count-up');
+  if (countEls.length && 'IntersectionObserver' in window) {
+    const countObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    countEls.forEach(function (el) { countObserver.observe(el); });
+  }
 });
+
+// Count-up helper: animates numeric content toward its final value.
+// Supports integers, decimals, and strings with suffixes like "+".
+function animateCount(el) {
+  const target = el.getAttribute('data-target');
+  if (!target) return;
+  const isDecimal = target.indexOf('.') !== -1;
+  const suffix = el.getAttribute('data-suffix') || '';
+  const num = parseFloat(target);
+  if (isNaN(num)) return;
+  const duration = 1200;
+  const startTime = performance.now();
+
+  function tick(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    // ease-out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = num * eased;
+    el.textContent = (isDecimal ? current.toFixed(num < 10 ? 3 : 2) : Math.round(current)) + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target + suffix;
+  }
+  requestAnimationFrame(tick);
+}
 
 // Contact Form Handler
 function handleContact(e) {
