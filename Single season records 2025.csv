@@ -49,7 +49,9 @@ Rank,Doubles,Name,Year
 7,13,Kyle Floquet,1999
 8,13,Charlie St. Clair,2011
 9,12,Donnie Carroll,1987
-10,11,Andy Lowry,2015
+T10,11,Andy Lowry,2015
+T10,11,Colton Windham,2026
+T10,11,Anthony Miotti,2026
 ,,,
 Top Ten Triples,,,
 Rank,Triples,Name,Year
@@ -132,13 +134,13 @@ Rank,Average,Name,Year
 1,0.543,Sean Bischofberger,1997
 2,0.522,Don Schuldies,1970
 3,0.521,Kevin James,2004
-4,0.489,Brian Giles,1989
-5,0.485,Donnie Carroll,1987
-6,0.485,Luke McRoberts,2002
-7,0.484,Kevin James,2003
-8,0.483,Marcus Giles,1995
-9,0.475,Austin Smith,2021
-10,0.474,John Fenn,1989
+4,0.495,Colton Windham,2026
+5,0.489,Brian Giles,1989
+6,0.485,Donnie Carroll,1987
+7,0.485,Luke McRoberts,2002
+8,0.484,Kevin James,2003
+9,0.483,Marcus Giles,1995
+10,0.475,Austin Smith,2021
 ,,,
 Top Ten Slugging Pct,,,
 Rank,Average,Name,Year
