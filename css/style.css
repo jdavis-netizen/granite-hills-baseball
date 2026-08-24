@@ -9,10 +9,11 @@
 }
 
 :root {
-  --navy: #001f3f;
-  --navy-light: #003366;
-  --columbia: #9BDDFF;
-  --columbia-dark: #6EC8F2;
+  --navy: #041E42;
+  --navy-light: #0A3161;
+  --columbia: #69B3E7;
+  --columbia-dark: #4E9BD9;
+  --columbia-text: #2A72A8;
   --white: #ffffff;
   --gray-50: #f8f9fa;
   --gray-100: #e9ecef;
@@ -197,7 +198,7 @@ ul {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(155,221,255,0.08) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(105,179,231,0.08) 0%, transparent 60%);
   animation: pulse 8s ease-in-out infinite;
 }
 
@@ -396,7 +397,7 @@ ul {
 
 .card-meta {
   font-size: 0.8rem;
-  color: var(--columbia-dark);
+  color: var(--columbia-text);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 6px;
@@ -454,7 +455,7 @@ ul {
 }
 
 .roster-table tbody tr:hover {
-  background: rgba(155, 221, 255, 0.1);
+  background: rgba(105, 179, 231, 0.1);
 }
 
 .roster-table tbody tr:nth-child(even) {
@@ -462,7 +463,7 @@ ul {
 }
 
 .roster-table tbody tr:nth-child(even):hover {
-  background: rgba(155, 221, 255, 0.1);
+  background: rgba(105, 179, 231, 0.1);
 }
 
 /* --- Schedule Table --- */
@@ -500,7 +501,7 @@ ul {
 }
 
 .schedule-table tbody tr:hover {
-  background: rgba(155, 221, 255, 0.1);
+  background: rgba(105, 179, 231, 0.1);
 }
 
 .badge {
@@ -574,7 +575,7 @@ ul {
 
 .coach-info .title {
   font-family: var(--font-heading);
-  color: var(--columbia-dark);
+  color: var(--columbia-text);
   font-weight: 500;
   font-size: 0.9rem;
   margin-bottom: 10px;
@@ -624,7 +625,7 @@ ul {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(0,31,63,0.9));
+  background: linear-gradient(transparent, rgba(4,30,66,0.9));
   color: var(--white);
   padding: 30px 14px 14px;
   font-size: 0.85rem;
@@ -666,7 +667,7 @@ ul {
 .contact-form select:focus {
   outline: none;
   border-color: var(--columbia);
-  box-shadow: 0 0 0 3px rgba(155, 221, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(105, 179, 231, 0.3);
 }
 
 .contact-form textarea {
@@ -701,7 +702,7 @@ ul {
 .info-icon {
   width: 40px;
   height: 40px;
-  background: rgba(155, 221, 255, 0.15);
+  background: rgba(105, 179, 231, 0.15);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -734,7 +735,7 @@ ul {
   grid-template-columns: 2fr 1fr 1fr;
   gap: 40px;
   padding-bottom: 30px;
-  border-bottom: 1px solid rgba(155, 221, 255, 0.15);
+  border-bottom: 1px solid rgba(105, 179, 231, 0.15);
 }
 
 .footer-brand h3 {
@@ -784,7 +785,7 @@ ul {
 .social-icon {
   width: 38px;
   height: 38px;
-  background: rgba(155, 221, 255, 0.1);
+  background: rgba(105, 179, 231, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -879,7 +880,7 @@ ul {
   display: inline-block;
   margin-top: 8px;
   font-size: 0.8rem;
-  color: var(--columbia-dark);
+  color: var(--columbia-text);
   font-style: italic;
 }
 
@@ -940,18 +941,18 @@ ul {
 }
 
 .tracker-level-d1 {
-  background: #1a5276;
+  background: var(--navy-light);
   color: var(--white);
 }
 
 .tracker-level-d2 {
-  background: #2e86c1;
+  background: var(--columbia-text);
   color: var(--white);
 }
 
 .tracker-level-d3 {
-  background: #5dade2;
-  color: var(--white);
+  background: var(--columbia-dark);
+  color: var(--navy);
 }
 
 .tracker-level-naia {
@@ -989,7 +990,7 @@ ul {
 .tracker-team {
   font-family: var(--font-heading);
   font-size: 0.95rem;
-  color: var(--columbia-dark);
+  color: var(--columbia-text);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1031,7 +1032,7 @@ ul {
 .tracker-stat-label {
   display: block;
   font-size: 0.65rem;
-  color: rgba(155, 221, 255, 0.6);
+  color: rgba(105, 179, 231, 0.6);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-top: 2px;
@@ -1209,7 +1210,7 @@ ul {
 .ticker-item .ticker-result-l { color: #f87171; font-weight: 800; }
 
 .ticker-item .ticker-divider {
-  color: rgba(155,221,255,0.3);
+  color: rgba(105,179,231,0.3);
   font-size: 1.2rem;
 }
 
@@ -1299,16 +1300,16 @@ ul {
 
 .stat-item:hover {
   transform: translateY(-6px);
-  background: rgba(155, 221, 255, 0.08);
+  background: rgba(105, 179, 231, 0.08);
 }
 
 .section-dark .stat-item h3 {
-  text-shadow: 0 0 25px rgba(155, 221, 255, 0.5), 0 2px 10px rgba(0,0,0,0.3);
+  text-shadow: 0 0 25px rgba(105, 179, 231, 0.5), 0 2px 10px rgba(0,0,0,0.3);
   transition: text-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .section-dark .stat-item:hover h3 {
-  text-shadow: 0 0 40px rgba(155, 221, 255, 0.9), 0 0 15px rgba(155,221,255,0.5);
+  text-shadow: 0 0 40px rgba(105, 179, 231, 0.9), 0 0 15px rgba(105,179,231,0.5);
   transform: scale(1.05);
 }
 
@@ -1344,7 +1345,7 @@ ul {
 
 .card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 16px 40px rgba(0, 31, 63, 0.22);
+  box-shadow: 0 16px 40px rgba(4, 30, 66, 0.22);
 }
 
 .card-img {
@@ -1358,7 +1359,7 @@ ul {
 
 /* --- Button Enhancement --- */
 .btn-primary {
-  box-shadow: 0 4px 15px rgba(155, 221, 255, 0.35);
+  box-shadow: 0 4px 15px rgba(105, 179, 231, 0.35);
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -1379,7 +1380,7 @@ ul {
 }
 
 .btn-primary:hover {
-  box-shadow: 0 8px 30px rgba(155, 221, 255, 0.6);
+  box-shadow: 0 8px 30px rgba(105, 179, 231, 0.6);
   transform: translateY(-3px);
 }
 
@@ -1423,7 +1424,7 @@ ul {
   width: 120%;
   height: 120%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(155,221,255,0.08), transparent 70%);
+  background: radial-gradient(circle, rgba(105,179,231,0.08), transparent 70%);
   z-index: -1;
   pointer-events: none;
 }
@@ -1434,7 +1435,7 @@ ul {
 }
 
 .schedule-table tbody tr:hover {
-  background: rgba(155, 221, 255, 0.15);
+  background: rgba(105, 179, 231, 0.15);
   transform: scale(1.005);
 }
 
@@ -1459,7 +1460,7 @@ ul {
 
 .logo:hover .logo-icon {
   transform: rotate(-5deg);
-  filter: drop-shadow(0 4px 12px rgba(155,221,255,0.5));
+  filter: drop-shadow(0 4px 12px rgba(105,179,231,0.5));
 }
 
 /* --- Hero scroll indicator --- */
@@ -1511,7 +1512,7 @@ ul {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(155,221,255,0.10) 0%, transparent 50%);
+  background: radial-gradient(circle, rgba(105,179,231,0.10) 0%, transparent 50%);
   animation: pulse 10s ease-in-out infinite;
   pointer-events: none;
 }
