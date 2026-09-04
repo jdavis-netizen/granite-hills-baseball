@@ -1921,3 +1921,13 @@ body { background: #F3F6FA; }
   .leader-name { font-size: 0.9rem; }
   .page-banner h2 { font-size: 2.4rem; }
 }
+
+/* --- Tracker: short status note under the stat row --- */
+.tracker-note {
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px solid rgba(4,30,66,0.09);
+  font-size: 0.83rem;
+  line-height: 1.55;
+  color: var(--gray-600);
+}
