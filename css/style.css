@@ -1,5 +1,15 @@
 /* ===== Granite Hills Baseball - Main Stylesheet ===== */
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap');
+
+/* --- Granite Hills athletics wordmark (Brandiose). All-caps display face. --- */
+@font-face {
+  font-family: 'Granite Hills';
+  src: url('../fonts/GraniteHills-Bold.woff2') format('woff2'),
+       url('../fonts/GraniteHills-Bold.woff') format('woff');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* --- Reset & Base --- */
 *, *::before, *::after {
@@ -23,7 +33,7 @@
   --gold: #FFD700;
   --font-main: 'Barlow Condensed', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --font-heading: 'Oswald', 'Impact', Arial Narrow, sans-serif;
-  --font-display: 'Bebas Neue', 'Oswald', 'Impact', sans-serif;
+  --font-display: 'Granite Hills', 'Oswald', 'Impact', sans-serif;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.15);
   --radius: 8px;
@@ -1930,4 +1940,67 @@ body { background: #F3F6FA; }
   font-size: 0.83rem;
   line-height: 1.55;
   color: var(--gray-600);
+}
+
+/* ============================================= */
+/* ===== Granite Hills wordmark typography ===== */
+/* ============================================= */
+
+/* The school face is an all-caps display font: use it big, never for body copy. */
+.section-header h2,
+.era-header h3,
+.logo-text h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+/* Optical fixes: this face is heavier and wider than Oswald at the same size. */
+.logo-text h1 { font-size: 1.3rem; letter-spacing: 0.5px; }
+.section-header h2 { letter-spacing: 1px; }
+.era-header h3 { letter-spacing: 1px; font-size: 2rem; }
+.stat-item h3, .leader-num { letter-spacing: 0; }
+
+/* Hero + page banners: navy fill, columbia outline, as on the jersey wordmark.
+   paint-order puts the stroke behind the fill so letterforms stay full weight. */
+.hero h2,
+.page-banner h2 {
+  -webkit-text-stroke: 0.09em var(--columbia);
+  paint-order: stroke fill;
+  text-stroke: 0.09em var(--columbia);
+}
+
+/* Over photos the fill stays light so it reads against the image. */
+.hero h2 {
+  background: none;
+  -webkit-text-fill-color: var(--white);
+  color: var(--white);
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6));
+}
+
+.page-banner h2 {
+  background: none;
+  -webkit-text-fill-color: var(--white);
+  color: var(--white);
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.45));
+}
+
+/* Section headers on light backgrounds get the true logo treatment:
+   navy letters, columbia outline. */
+.section:not(.section-dark) .section-header h2 {
+  color: var(--navy);
+  -webkit-text-stroke: 0.055em var(--columbia);
+  paint-order: stroke fill;
+}
+.section-dark .section-header h2 { color: var(--white); }
+
+@media (max-width: 600px) {
+  .logo-text h1 { font-size: 1.05rem; }
+  /* Headers fill the width in this face; keep the decorative glow from
+     bleeding past the viewport and creating horizontal scroll. */
+  .section-header h2::before { width: 100%; }
+  /* Era headers put a long badge beside the title; let them stack on
+     narrow screens instead of running off the edge. */
+  .era-header { flex-wrap: wrap; gap: 10px; }
+  .era-badge { white-space: normal; }
+  .era-header h3 { font-size: 1.5rem; }
 }
