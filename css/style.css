@@ -1960,37 +1960,18 @@ body { background: #F3F6FA; }
 .era-header h3 { letter-spacing: 1px; font-size: 2rem; }
 .stat-item h3, .leader-num { letter-spacing: 0; }
 
-/* Hero + page banners: navy fill, columbia outline, as on the jersey wordmark.
-   paint-order puts the stroke behind the fill so letterforms stay full weight. */
-.hero h2,
+/* Hero + page banners: the school face with the glassy gradient fill and glow.
+   (The hero rule in the refresh layer above already does this; banners match it.) */
 .page-banner h2 {
-  -webkit-text-stroke: 0.09em var(--columbia);
-  paint-order: stroke fill;
-  text-stroke: 0.09em var(--columbia);
+  background: linear-gradient(180deg, #ffffff 25%, var(--columbia) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,0.5));
 }
 
-/* Over photos the fill stays light so it reads against the image. */
-.hero h2 {
-  background: none;
-  -webkit-text-fill-color: var(--white);
-  color: var(--white);
-  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.6));
-}
-
-.page-banner h2 {
-  background: none;
-  -webkit-text-fill-color: var(--white);
-  color: var(--white);
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.45));
-}
-
-/* Section headers on light backgrounds get the true logo treatment:
-   navy letters, columbia outline. */
-.section:not(.section-dark) .section-header h2 {
-  color: var(--navy);
-  -webkit-text-stroke: 0.055em var(--columbia);
-  paint-order: stroke fill;
-}
+/* Section headers: solid navy on light, white on dark. No outline. */
+.section:not(.section-dark) .section-header h2 { color: var(--navy); }
 .section-dark .section-header h2 { color: var(--white); }
 
 @media (max-width: 600px) {
