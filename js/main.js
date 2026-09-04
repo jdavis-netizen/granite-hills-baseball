@@ -83,3 +83,12 @@ function handleContact(e) {
   form.reset();
   return false;
 }
+
+// Header: compacts and goes more opaque once the page is scrolled
+(function () {
+  var header = document.querySelector('.site-header');
+  if (!header) return;
+  var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 40); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
