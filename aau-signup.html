@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAU Sign-Up - Granite Hills Baseball</title>
+  <meta name="description" content="How Granite Hills players sign up for the AAU athlete membership required to play fall Eagle Baseball. Club code, cost, and step-by-step instructions for parents.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/Eagle head   new 2023.png">
+  <style>
+    /* Page-specific styles for the AAU sign-up explainer */
+    .signup-intro {
+      max-width: 820px;
+      margin: 0 auto 36px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--gray-800);
+    }
+    .signup-intro strong { color: var(--navy); }
+
+    .key-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .key-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 20px;
+      text-align: center;
+      border-top: 4px solid var(--columbia);
+    }
+    .key-card .key-label {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      margin-bottom: 6px;
+    }
+    .key-card .key-value {
+      font-family: var(--font-heading);
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+    .key-card .key-sub {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      margin-top: 6px;
+    }
+    .club-code {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 2rem;
+      letter-spacing: 3px;
+      color: var(--navy);
+      background: var(--gray-100);
+      border: 2px dashed var(--columbia-dark);
+      border-radius: var(--radius);
+      padding: 8px 14px;
+      display: inline-block;
+      user-select: all;
+    }
+    .copy-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 14px;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--columbia);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: var(--columbia-dark); }
+
+    .steps { max-width: 860px; margin: 0 auto; counter-reset: step; }
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 18px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px 24px 22px 20px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--columbia);
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .step h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .step p, .step li { font-size: 1.02rem; line-height: 1.55; }
+    .step ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+    .step li { margin-bottom: 5px; }
+    .step .path {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      color: var(--columbia-text);
+      letter-spacing: 0.5px;
+    }
+    .callout {
+      background: rgba(105,179,231,0.14);
+      border-left: 4px solid var(--columbia-dark);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      font-size: 0.98rem;
+    }
+    .callout.warn {
+      background: rgba(255,215,0,0.16);
+      border-left-color: var(--gold);
+    }
+    .callout strong { color: var(--navy); }
+
+    .faq { max-width: 860px; margin: 0 auto; }
+    .faq details {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 12px;
+      padding: 0 20px;
+    }
+    .faq summary {
+      cursor: pointer;
+      padding: 16px 0;
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      color: var(--navy);
+      letter-spacing: 0.5px;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--columbia-dark);
+      transition: transform 0.2s ease;
+    }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq details p { padding: 0 0 16px; line-height: 1.55; }
+
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .help-card {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+    .help-card h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--columbia);
+      margin-bottom: 8px;
+    }
+    .help-card p { font-size: 0.95rem; line-height: 1.5; }
+    .help-card a { color: var(--white); text-decoration: underline; }
+
+    .print-row { text-align: center; margin-top: 28px; }
+    .print-help { display: none; }
+
+    @media (max-width: 600px) {
+      .step { grid-template-columns: 44px 1fr; padding: 18px 16px 16px 14px; gap: 12px; }
+      .step-num { width: 36px; height: 36px; font-size: 1.1rem; }
+      .club-code { font-size: 1.5rem; letter-spacing: 2px; }
+      .key-card .key-value { font-size: 1.6rem; }
+    }
+
+    /* Print: strip the chrome so this doubles as a one-page handout */
+    @page { size: letter; margin: 10mm 12mm; }
+    @media print {
+      .top-bar, .site-header, .site-footer, .print-row, .copy-btn, .hero-scroll-hint { display: none !important; }
+      body { background: #fff; color: #000; font-size: 11pt; }
+      .page-banner { background: none !important; color: #000; padding: 0 0 8px; text-align: left; }
+      .page-banner::before, .page-banner::after { display: none !important; }
+      .page-banner h2 {
+        color: #041E42 !important; -webkit-text-fill-color: #041E42 !important;
+        background: none !important; text-shadow: none !important; -webkit-background-clip: initial !important;
+        font-size: 22pt; letter-spacing: 1px; margin-bottom: 2px;
+      }
+      .page-banner p { color: #333; font-size: 10pt; }
+      .section { padding: 5px 0 !important; }
+      .container { max-width: none !important; padding: 0 !important; }
+      .key-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 8px; margin-bottom: 14px; }
+      .key-card { padding: 8px 6px; }
+      .key-card .key-value { font-size: 15pt; }
+      .club-code { font-size: 14pt; letter-spacing: 2px; padding: 3px 8px; border-width: 1px; }
+      .key-card .key-sub, .key-card .key-label { font-size: 8pt; }
+      .section-header { margin-bottom: 8px; }
+      .section-header h2 { font-size: 14pt; color: #041E42 !important; -webkit-text-fill-color: #041E42 !important; background: none !important; text-shadow: none !important; }
+      .section-header .accent-line { display: none; }
+      .steps, .faq, .help-grid { max-width: none; }
+      .step { grid-template-columns: 30px 1fr; gap: 8px; }
+      .step-num { width: 24px; height: 24px; font-size: 10pt; }
+      .step h3 { font-size: 11.5pt; margin-bottom: 2px; }
+      .step p, .step li, .faq details p, .help-card p, .callout { font-size: 9pt; line-height: 1.32; }
+      .step .path { font-size: 8.5pt; }
+      .step ul { margin-top: 3px; }
+      .step li { margin-bottom: 2px; }
+      .callout { padding: 5px 10px; margin-top: 6px; }
+      .faq summary { font-size: 9pt; padding: 4px 0; }
+      .faq details p { padding: 0 0 4px; font-size: 8.5pt; }
+      .faq details { margin-bottom: 4px; }
+      .help-section { display: none; }
+      .print-help { display: block !important; margin-top: 8px; font-size: 9pt; line-height: 1.4; border-top: 1px solid #bbb; padding-top: 6px; }
+      .help-card { padding: 6px 8px; }
+      .help-card p { font-size: 8.5pt; }
+      .help-card h4 { font-size: 9pt; margin-bottom: 2px; }
+      .section-light, .section-dark { background: none !important; }
+      .key-card, .step, .faq details, .help-card { box-shadow: none; border: 1px solid #bbb; break-inside: avoid; }
+      .help-card { background: none; color: #000; }
+      .help-card h4 { color: #041E42; }
+      .help-card a { color: #000; }
+      .step { padding: 8px 10px; margin-bottom: 6px; }
+      .step-num { background: #041E42; color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .faq details { padding: 0 12px; }
+      .faq details[open] summary::after, .faq summary::after { display: none; }
+      .signup-intro { font-size: 11pt; margin-bottom: 14px; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"><img src="images/Eagle flying new 2023.png" alt="Eagles"> Granite Hills High School &mdash; Home of the Eagles Baseball <img src="images/Eagle flying new 2023.png" alt="Eagles"><a class="top-bar-link" href="aau-signup.html">Fall Ball Sign-Up &rarr;</a></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="images/gh new.png" alt="GH Logo"></div>
+        <div class="logo-text">
+          <h1>Granite Hills Baseball</h1>
+          <span>Eagles Athletics</span>
+        </div>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="stats.html">Stats</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="coaches.html">Coaches</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="records.html">Records</a></li>
+          <li><a href="alumni.html">Alumni</a></li>
+          <li><a href="tracker.html">Tracker</a></li>
+          <li><a href="https://granitehillsbaseball.itemorder.com/shop/home/" target="_blank">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-banner">
+    <h2>Fall Ball Sign-Up</h2>
+    <p>AAU athlete membership &mdash; required before your first Eagle Baseball practice</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="signup-intro">
+        In the fall, Granite Hills players train and play as <strong>Eagle Baseball</strong>, an AAU club that
+        Coach Davis runs outside the school season. The school district requires every player on the field
+        to be covered by AAU insurance, so <strong>each player needs his own AAU athlete membership</strong>
+        before he can practice. A parent does this online in about ten minutes.
+      </p>
+
+      <div class="key-grid">
+        <div class="key-card">
+          <div class="key-label">Our club code</div>
+          <div class="key-value"><span class="club-code" id="clubCode">UYMR3R9UX</span></div>
+          <button class="copy-btn" type="button" onclick="copyCode()" id="copyBtn">Copy code</button>
+          <div class="key-sub">Enter this when the form asks for a club</div>
+        </div>
+        <div class="key-card">
+          <div class="key-label">Cost</div>
+          <div class="key-value">$24</div>
+          <div class="key-sub">Extended Coverage athlete membership, plus a small processing fee</div>
+        </div>
+        <div class="key-card">
+          <div class="key-label">Membership year</div>
+          <div class="key-value">2026&ndash;27</div>
+          <div class="key-sub">Valid Sept 1, 2026 through Aug 31, 2027</div>
+        </div>
+        <div class="key-card">
+          <div class="key-label">Who signs up</div>
+          <div class="key-value">Parent</div>
+          <div class="key-sub">A parent or guardian creates the account for a player under 18</div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h2>Step by Step</h2>
+        <div class="accent-line"></div>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Create a parent account on the AAU Sports Hub</h3>
+            <p class="path">aau.uventex.com &rarr; Sign In &rarr; Create account</p>
+            <p>Go to <a href="https://aau.uventex.com" target="_blank" rel="noopener"><strong>aau.uventex.com</strong></a> and
+              create an account <strong>in the parent's or guardian's name</strong>, not the player's. AAU requires the
+              adult to be the account holder for anyone under 18. Use an email address you check &mdash; the
+              membership card comes to it. Confirm the verification email before continuing.</p>
+            <div class="callout">Already have a Sports Hub account from another AAU sport or a travel team? Just sign in &mdash; you can add a player to it.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Start an athlete membership</h3>
+            <p class="path">Memberships &rarr; AAU Athlete Memberships &rarr; Get Started</p>
+            <p>From the dashboard, open <strong>Memberships</strong>, choose <strong>AAU Athlete Memberships</strong>, and click
+              <strong>Get Started</strong>. Make sure the membership year shown is <strong>2026&ndash;27</strong> (it should
+              say the membership runs through 08/31/2027).</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Add your player</h3>
+            <p class="path">Add new athlete &rarr; fill in every field &rarr; Save athlete</p>
+            <p>Click <strong>Add new athlete</strong> and enter the player's legal name, date of birth, and address exactly as
+              they appear on his school records. Save the athlete. If you have more than one player, add each one here
+              before moving on.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <h3>Pick the membership and enter our club code</h3>
+            <p class="path">Select membership &rarr; Extended Coverage ($24) &rarr; Baseball &rarr; club code</p>
+            <ul>
+              <li>Choose the <strong>Extended Coverage (AB) athlete membership &mdash; $24</strong>. Do <em>not</em> pick the
+                $22 regular membership; it does not cover the player at games against non-AAU teams.</li>
+              <li>Program: <strong>Youth</strong>. Sport: <strong>Baseball</strong>.</li>
+              <li>When it asks for a club, enter <strong>UYMR3R9UX</strong>. The club name should come back as
+                <strong>Eagle Baseball</strong> &mdash; if it shows anything else, stop and re-enter the code.</li>
+            </ul>
+            <div class="callout warn"><strong>Without the club code, the player is not attached to our team</strong> and the district will not count him as covered on our field. Double-check it before you pay.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">5</div>
+          <div>
+            <h3>Sign and pay</h3>
+            <p class="path">Terms &amp; Conditions &rarr; digital signature &rarr; Payment</p>
+            <ul>
+              <li>Read and accept the terms. When you sign, type your full name <strong>exactly as it appears on your Sports Hub account</strong> &mdash; the site rejects a mismatch.</li>
+              <li>You will be asked to confirm you are 18 or older and to attest to your player's age. Complete the parent verification if prompted.</li>
+              <li>Pay by card. Uventex adds a small processing fee at checkout.</li>
+              <li><strong>Turn off Automatic Membership Renewal</strong> unless you want to be charged again next September.</li>
+            </ul>
+            <div class="callout">AAU memberships are <strong>non-refundable</strong> once issued, so make sure the year, the membership type, and the club code are right before you pay.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">6</div>
+          <div>
+            <h3>Send the confirmation to Coach Davis</h3>
+            <p class="path">Forward the "AAU Membership Confirmation" email &rarr; jdavis@guhsd.net</p>
+            <p>Within a few minutes you will get an email from <strong>NO-REPLY@uventex.com</strong> with the player's
+              AAU member ID and membership card. <strong>Forward it to
+              <a href="mailto:jdavis@guhsd.net?subject=AAU%20membership%20-%20player%20name">jdavis@guhsd.net</a></strong>
+              with the player's name in the subject line. Coach Davis checks every player against the club roster
+              before the first practice.</p>
+            <div class="callout warn"><strong>No membership on file, no practice.</strong> Please finish this before the first fall practice date the coaches announce.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="print-row">
+        <button class="btn btn-primary" type="button" onclick="window.print()">Print this page</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-header">
+        <h2>Common Questions</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Why do we need AAU insurance? Isn't he covered as a Granite Hills player?</summary>
+          <p>Only during the CIF season. Fall ball is not a school activity, so the district's insurance does not
+            cover it. The district lets Eagle Baseball use the field only because the club carries AAU liability
+            coverage, and that coverage applies only to players who hold a current AAU membership under our club
+            code.</p>
+        </details>
+        <details>
+          <summary>My son already has an AAU membership through his travel team. Does he need another one?</summary>
+          <p>Probably not, as long as it is a current 2026&ndash;27 <em>athlete</em> membership that runs through
+            08/31/2027. Email his AAU member ID to Coach Davis before buying anything. AAU allows an athlete to be
+            linked to more than one club, and we will sort out attaching him to Eagle Baseball.</p>
+        </details>
+        <details>
+          <summary>What is the difference between Extended Coverage and the regular membership?</summary>
+          <p>The regular $22 membership covers the player at AAU-licensed events only. Extended Coverage ($24) also
+            covers him at events that are not AAU-licensed. Some of the teams we scrimmage in the fall are not AAU
+            clubs, so we require Extended Coverage for everyone. The $2 difference is well worth it.</p>
+        </details>
+        <details>
+          <summary>The site asks for a "club" and I don't see Eagle Baseball in a list.</summary>
+          <p>Type the club code <strong>UYMR3R9UX</strong> in the club code field rather than searching by name. The
+            Sports Hub matches on the code and fills in "Eagle Baseball" for you.</p>
+        </details>
+        <details>
+          <summary>Does the coach need anything else from us?</summary>
+          <p>Just the forwarded confirmation email. Coach Davis can also see every registered player on the club's
+            roster in the AAU Sports Hub, so if you forget to forward it he can still confirm the membership.</p>
+        </details>
+        <details>
+          <summary>Can I do this on my phone?</summary>
+          <p>Yes. The Sports Hub works in a phone browser. If a step stalls, try it on a computer &mdash; the
+            payment and signature screens are easier there.</p>
+        </details>
+      </div>
+      <p class="print-help"><strong>Need help?</strong> Coach Davis &mdash; jdavis@guhsd.net, (619) 593-5601 (club code, who is registered, practice schedule) &middot; AAU Membership Office &mdash; (407) 934-7200, membership@aausports.org (membership rules, existing AAU IDs, refunds) &middot; Sports Hub website support &mdash; support@uventex.com (login or payment problems). Online version: granitehillsbaseball.netlify.app/aau-signup.html</p>
+    </div>
+  </section>
+
+  <section class="section help-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Need Help?</h2>
+        <div class="accent-line"></div>
+      </div>
+      <div class="help-grid">
+        <div class="help-card">
+          <h4>Coach Davis</h4>
+          <p><a href="mailto:jdavis@guhsd.net">jdavis@guhsd.net</a><br>(619) 593-5601<br>Questions about the club code, who is registered, or the practice schedule.</p>
+        </div>
+        <div class="help-card">
+          <h4>AAU Membership Office</h4>
+          <p>(407) 934-7200<br><a href="mailto:membership@aausports.org">membership@aausports.org</a><br>Membership rules, existing AAU IDs, and refund questions.</p>
+        </div>
+        <div class="help-card">
+          <h4>Sports Hub Website Support</h4>
+          <p><a href="mailto:support@uventex.com">support@uventex.com</a><br>Login problems, error messages, or the site not accepting a payment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/Eagle flying new 2023.png" alt="Eagles Logo" class="footer-eagle">
+        <h3>Granite Hills Eagles Baseball</h3>
+        <p>Granite Hills High School's baseball program is committed to developing student-athletes through competitive play, academic achievement, and character building.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="stats.html">Stats</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="aau-signup.html">Fall Ball Sign-Up</a></li>
+          <li><a href="https://granitehillsbaseball.itemorder.com/shop/home/" target="_blank">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://x.com/granitehillsbb" target="_blank" class="social-icon" title="Twitter/X">X</a>
+          <a href="#" class="social-icon" title="Instagram">IG</a>
+          <a href="#" class="social-icon" title="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Granite Hills High School Baseball. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Print: expand every FAQ answer so the handout carries the full text
+    window.addEventListener('beforeprint', function () {
+      document.querySelectorAll('.faq details').forEach(function (d) { d.dataset.wasOpen = d.open ? '1' : ''; d.open = true; });
+    });
+    window.addEventListener('afterprint', function () {
+      document.querySelectorAll('.faq details').forEach(function (d) { d.open = d.dataset.wasOpen === '1'; });
+    });
+    function copyCode() {
+      var code = document.getElementById('clubCode').textContent.trim();
+      var btn = document.getElementById('copyBtn');
+      function done(ok) {
+        btn.textContent = ok ? 'Copied!' : 'Select and copy';
+        setTimeout(function () { btn.textContent = 'Copy code'; }, 2000);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(function () { done(true); }, function () { done(false); });
+      } else {
+        try {
+          var range = document.createRange();
+          range.selectNodeContents(document.getElementById('clubCode'));
+          var sel = window.getSelection();
+          sel.removeAllRanges(); sel.addRange(range);
+          done(document.execCommand('copy'));
+        } catch (e) { done(false); }
+      }
+    }
+  </script>
+</body>
+</html>

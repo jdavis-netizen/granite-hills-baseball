@@ -87,6 +87,24 @@ ul {
   display: inline-block;
 }
 
+.top-bar-link {
+  margin-left: 14px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--columbia);
+  color: var(--navy);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+.top-bar-link:hover { background: var(--white); }
+@media (max-width: 600px) {
+  .top-bar { flex-wrap: wrap; row-gap: 4px; padding: 6px 8px; }
+  .top-bar-link { margin-left: 0; }
+}
+
 .footer-eagle {
   width: 60px;
   margin-bottom: 12px;
@@ -1616,6 +1634,7 @@ body { background: #F3F6FA; }
 .main-nav ul { gap: 2px; }
 .main-nav a {
   position: relative;
+  white-space: nowrap;
   background: transparent;
   color: rgba(255,255,255,0.85);
   padding: 8px 9px;
