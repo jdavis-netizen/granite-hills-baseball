@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Quizzes - Granite Hills Baseball</title>
+  <meta name="description" content="Rules and game-situation quizzes for Granite Hills baseball players.">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/Eagle head   new 2023.png">
+  <style>
+    .qz-wrap { max-width: 760px; margin: 0 auto; }
+    .qz-intro { text-align: center; font-size: 1.1rem; margin-bottom: 24px; }
+    .qz-pick { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .qz-card { display: block; background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; border-top: 4px solid var(--columbia); color: inherit; text-decoration: none; transition: var(--transition); }
+    .qz-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .qz-card h3 { font-family: var(--font-heading); color: var(--navy); text-transform: uppercase; letter-spacing: 1px; font-size: 1.3rem; margin-bottom: 6px; }
+    .qz-card p { font-size: 1rem; line-height: 1.45; margin-bottom: 12px; }
+    .qz-card span { font-family: var(--font-heading); color: var(--columbia-text); text-transform: uppercase; letter-spacing: 1px; font-size: .9rem; }
+
+    .qz-who { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-bottom: 22px; border-top: 4px solid var(--navy); }
+    .qz-who label { display: block; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 1px; font-size: .85rem; color: var(--navy); margin-bottom: 4px; }
+    .qz-who input, .qz-who select { width: 100%; font: inherit; font-size: 1.1rem; padding: 10px 12px; border: 2px solid var(--gray-200); border-radius: 6px; background: var(--white); }
+    .qz-who input:focus, .qz-who select:focus { outline: none; border-color: var(--columbia); }
+    .qz-sub { font-size: 1.05rem; margin-bottom: 18px; text-align: center; }
+    .qz-gate { max-width: 520px; margin: 0 auto; }
+    .qz-gate-msg { grid-column: 1 / -1; margin: 0; font-size: 1.02rem; color: var(--gray-800); }
+
+    .qz-q { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 18px 14px; margin-bottom: 14px; border-left: 5px solid var(--gray-200); }
+    .qz-q.answered { border-left-color: var(--columbia); }
+    .qz-q.right { border-left-color: #1f8a4c; }
+    .qz-q.wrong { border-left-color: #c0392b; }
+    .qz-qt { display: flex; gap: 10px; font-size: 1.15rem; font-weight: 600; line-height: 1.35; margin-bottom: 12px; color: var(--gray-800); }
+    .qz-n { flex: 0 0 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--white); font-family: var(--font-heading); font-size: .95rem; display: flex; align-items: center; justify-content: center; }
+    .qz-opts { display: grid; gap: 8px; }
+    .qz-opt { display: flex; gap: 10px; align-items: flex-start; width: 100%; text-align: left; font: inherit; font-size: 1.08rem; line-height: 1.3; padding: 11px 12px; border: 2px solid var(--gray-200); border-radius: 8px; background: var(--gray-50); cursor: pointer; color: var(--gray-800); }
+    .qz-opt b { flex: 0 0 24px; height: 24px; border-radius: 50%; border: 2px solid var(--navy); color: var(--navy); font-size: .85rem; display: flex; align-items: center; justify-content: center; }
+    .qz-opt:hover { border-color: var(--columbia); }
+    .qz-opt.sel { border-color: var(--navy); background: #e8f2fb; }
+    .qz-opt.sel b { background: var(--navy); color: var(--white); }
+    .qz-opt:disabled { cursor: default; }
+    .qz-opt.is-right { border-color: #1f8a4c; background: #e9f7ef; }
+    .qz-opt.is-right b { background: #1f8a4c; border-color: #1f8a4c; color: var(--white); }
+    .qz-opt.is-wrong { border-color: #c0392b; background: #fdecea; }
+    .qz-opt.is-wrong b { background: #c0392b; border-color: #c0392b; color: var(--white); }
+    .qz-why { display: none; margin-top: 10px; padding: 10px 12px; background: var(--gray-50); border-radius: 6px; font-size: 1.02rem; line-height: 1.4; }
+    .qz-done .qz-why { display: block; }
+
+    .qz-bar { position: sticky; bottom: 0; z-index: 20; background: var(--navy); color: var(--white); border-radius: 10px 10px 0 0; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 -4px 16px rgba(0,0,0,.18); margin-top: 18px; }
+    .qz-bar .qz-count { font-family: var(--font-heading); letter-spacing: 1px; text-transform: uppercase; font-size: 1rem; }
+    .qz-bar .qz-hint { display: block; font-family: var(--font-main); text-transform: none; letter-spacing: 0; color: var(--columbia); font-size: .95rem; }
+    .qz-bar .btn[disabled] { opacity: .45; cursor: not-allowed; }
+
+    #qzResult { scroll-margin-top: 110px; }
+    .qz-result { background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: var(--white); border-radius: 12px; padding: 26px 22px; text-align: center; margin-bottom: 22px; box-shadow: var(--shadow-lg); }
+    .qz-result .qz-score { font-family: var(--font-display); font-size: 3.4rem; line-height: 1; color: var(--columbia); }
+    .qz-result h3 { font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 1.5px; margin: 6px 0 10px; }
+    .qz-result p { color: rgba(255,255,255,.85); font-size: 1.05rem; }
+    .qz-result .qz-sent { margin-top: 10px; font-weight: 600; }
+    .qz-result .qz-sent.ok { color: #8fe3b0; }
+    .qz-result .qz-sent.fail { color: #ffd38a; }
+    .qz-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+    .qz-actions .btn-outline { background: transparent; border: 2px solid var(--columbia); color: var(--white); }
+
+    @media (max-width: 560px) {
+      .qz-who { grid-template-columns: 1fr; }
+      .qz-qt { font-size: 1.08rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"><img src="images/Eagle flying new 2023.png" alt="Eagles"> Granite Hills High School &mdash; Home of the Eagles Baseball <img src="images/Eagle flying new 2023.png" alt="Eagles"><a class="top-bar-link" href="aau-signup.html">Fall Ball Sign-Up &rarr;</a></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><img src="images/gh new.png" alt="GH Logo"></div>
+        <div class="logo-text">
+          <h1>Granite Hills Baseball</h1>
+          <span>Eagles Athletics</span>
+        </div>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="stats.html">Stats</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="coaches.html">Coaches</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="records.html">Records</a></li>
+          <li><a href="alumni.html">Alumni</a></li>
+          <li><a href="tracker.html">Tracker</a></li>
+          <li><a href="https://granitehillsbaseball.itemorder.com/shop/home/" target="_blank">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-banner">
+    <h2 id="qzBannerTitle">Team Quizzes</h2>
+    <p id="qzBannerSub">Rules and game situations for Eagles players.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="qz-wrap" id="quizRoot">
+        <noscript><p class="qz-intro">This quiz needs JavaScript turned on.</p></noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- Netlify reads this hidden form at deploy time so it can accept quiz results. Field names must match the script below. -->
+  <form name="quiz-results" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name">
+    <input type="text" name="team">
+    <input type="text" name="quiz">
+    <input type="text" name="score">
+    <input type="text" name="missed">
+    <input type="text" name="bot-field">
+  </form>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/Eagle flying new 2023.png" alt="Eagles Logo" class="footer-eagle">
+        <h3>Granite Hills Eagles Baseball</h3>
+        <p>Granite Hills High School's baseball program is committed to developing student-athletes through competitive play, academic achievement, and character building.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="roster.html">Roster</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="stats.html">Stats</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="new-player.html">New Player Sign-Up</a></li>
+          <li><a href="aau-signup.html">Fall Ball Sign-Up</a></li>
+          <li><a href="https://granitehillsbaseball.itemorder.com/shop/home/" target="_blank">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://x.com/granitehillsbb" target="_blank" class="social-icon" title="Twitter/X">X</a>
+          <a href="#" class="social-icon" title="Instagram">IG</a>
+          <a href="#" class="social-icon" title="Facebook">FB</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Granite Hills High School Baseball. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/quizzes-data.js"></script>
+  <script>
+  (function () {
+    var LETTERS = ['A', 'B', 'C', 'D'];
+    var root = document.getElementById('quizRoot');
+    var slug = new URLSearchParams(location.search).get('q');
+
+    function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+    function store(k, v) { try { if (v === undefined) return localStorage.getItem(k) || ''; localStorage.setItem(k, v); } catch (e) { return ''; } }
+
+    // ---------- players-only code: the quiz content is encrypted with it ----------
+    function b64(s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); }
+    function unlock(code) {
+      var L = window.GH_QUIZZES_LOCKED;
+      if (!L || !window.crypto || !crypto.subtle) return Promise.reject(new Error('unsupported'));
+      return crypto.subtle.importKey('raw', new TextEncoder().encode(code), 'PBKDF2', false, ['deriveKey'])
+        .then(function (base) {
+          return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b64(L.salt), iterations: L.iter, hash: 'SHA-256' },
+            base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+        })
+        .then(function (key) { return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(L.iv) }, key, b64(L.data)); })
+        .then(function (buf) { return JSON.parse(new TextDecoder().decode(buf)); });
+    }
+    function showGate(msg) {
+      root.innerHTML = '<form class="qz-who qz-gate" id="qzGate" autocomplete="off">' +
+        '<div><label for="qzCode">Team code</label><input id="qzCode" type="password" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="From your coach"></div>' +
+        '<div style="align-self:end"><button type="submit" class="btn btn-primary" style="width:100%">Open</button></div>' +
+        '<p class="qz-gate-msg">' + (msg || 'Players only. Enter the team code your coach gave you.') + '</p></form>';
+      var input = document.getElementById('qzCode');
+      input.focus();
+      document.getElementById('qzGate').addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var code = input.value.trim();
+        if (!code) return;
+        unlock(code).then(function (data) { store('ghq-code', code); start(data); })
+          .catch(function (err) { showGate(err.message === 'unsupported' ? 'This browser cannot open the quiz. Try Safari or Chrome.' : 'That code is not right. Check with your coach.'); });
+      });
+    }
+    var saved = store('ghq-code');
+    if (saved) unlock(saved).then(start).catch(function () { store('ghq-code', ''); showGate(); });
+    else showGate();
+
+    function start(QUIZZES) {
+    var quiz = QUIZZES.filter(function (x) { return x.slug === slug; })[0];
+
+    // ---------- picker ----------
+    if (!quiz) {
+      root.innerHTML = '<p class="qz-intro">Pick a quiz. Put in your name so your score goes to the coaches.</p><div class="qz-pick">' +
+        QUIZZES.map(function (x) {
+          return '<a class="qz-card" href="quiz.html?q=' + esc(x.slug) + '"><h3>' + esc(x.title) + '</h3><p>' + esc(x.sub) + '</p><span>' + x.questions.length + ' questions &rarr;</span></a>';
+        }).join('') + '</div>';
+      return;
+    }
+
+    // ---------- quiz ----------
+    document.title = quiz.title + ' - Granite Hills Baseball';
+    document.getElementById('qzBannerTitle').textContent = quiz.title.replace(/^Quiz \d+ · /, '');
+    document.getElementById('qzBannerSub').textContent = quiz.title.split(' · ')[0] + ' · ' + quiz.questions.length + ' questions';
+
+    var answers = quiz.questions.map(function () { return -1; });
+    var n = quiz.questions.length;
+
+    root.innerHTML =
+      '<p class="qz-sub">' + esc(quiz.sub) + '</p>' +
+      '<div id="qzResult"></div>' +
+      '<div class="qz-who">' +
+        '<div><label for="qzName">Your name</label><input id="qzName" type="text" autocomplete="name" placeholder="First and last name"></div>' +
+        '<div><label for="qzTeam">Team</label><select id="qzTeam"><option value="">Pick one</option><option>Varsity</option><option>JV</option><option>Freshman</option></select></div>' +
+      '</div>' +
+      quiz.questions.map(function (item, i) {
+        return '<div class="qz-q" id="qzq' + i + '"><div class="qz-qt"><span class="qz-n">' + (i + 1) + '</span><span>' + esc(item.q) + '</span></div>' +
+          '<div class="qz-opts" role="radiogroup">' + item.o.map(function (o, j) {
+            return '<button type="button" class="qz-opt" role="radio" aria-checked="false" data-q="' + i + '" data-o="' + j + '"><b>' + LETTERS[j] + '</b><span>' + esc(o) + '</span></button>';
+          }).join('') + '</div><div class="qz-why"></div></div>';
+      }).join('') +
+      '<div class="qz-bar"><span class="qz-count"><span id="qzCount">0 of ' + n + ' answered</span><span class="qz-hint" id="qzHint"></span></span>' +
+      '<button type="button" class="btn btn-primary" id="qzSubmit" disabled>Submit</button></div>';
+
+    var nameEl = document.getElementById('qzName');
+    var teamEl = document.getElementById('qzTeam');
+    var submitEl = document.getElementById('qzSubmit');
+    nameEl.value = store('ghq-name');
+    teamEl.value = store('ghq-team');
+
+    function refresh() {
+      var done = answers.filter(function (a) { return a >= 0; }).length;
+      document.getElementById('qzCount').textContent = done + ' of ' + n + ' answered';
+      var hint = '';
+      if (!nameEl.value.trim()) hint = 'Put your name at the top.';
+      else if (!teamEl.value) hint = 'Pick your team at the top.';
+      else if (done < n) hint = 'Answer every question to submit.';
+      document.getElementById('qzHint').textContent = hint;
+      submitEl.disabled = !!hint;
+    }
+
+    root.addEventListener('click', function (ev) {
+      var btn = ev.target.closest('.qz-opt');
+      if (!btn || btn.disabled) return;
+      var qi = +btn.dataset.q, oi = +btn.dataset.o;
+      answers[qi] = oi;
+      var box = document.getElementById('qzq' + qi);
+      box.classList.add('answered');
+      box.querySelectorAll('.qz-opt').forEach(function (b) {
+        var on = +b.dataset.o === oi;
+        b.classList.toggle('sel', on);
+        b.setAttribute('aria-checked', on ? 'true' : 'false');
+      });
+      refresh();
+    });
+    nameEl.addEventListener('input', function () { store('ghq-name', nameEl.value); refresh(); });
+    teamEl.addEventListener('change', function () { store('ghq-team', teamEl.value); refresh(); });
+    refresh();
+
+    submitEl.addEventListener('click', function () {
+      if (submitEl.disabled) return;
+      submitEl.disabled = true;
+      var score = 0, missed = [];
+      quiz.questions.forEach(function (item, i) {
+        var right = answers[i] === item.a;
+        if (right) score++; else missed.push(i + 1);
+        var box = document.getElementById('qzq' + i);
+        box.classList.add(right ? 'right' : 'wrong');
+        box.querySelectorAll('.qz-opt').forEach(function (b) {
+          var o = +b.dataset.o;
+          b.disabled = true;
+          if (o === item.a) b.classList.add('is-right');
+          else if (o === answers[i]) b.classList.add('is-wrong');
+        });
+        box.querySelector('.qz-why').innerHTML = (right ? '<strong>Correct.</strong> ' : '<strong>Answer: ' + LETTERS[item.a] + '.</strong> ') + esc(item.e);
+      });
+      root.classList.add('qz-done');
+      nameEl.disabled = teamEl.disabled = true;
+      document.querySelector('.qz-bar').style.display = 'none';
+
+      var res = document.getElementById('qzResult');
+      res.innerHTML = '<div class="qz-result"><div class="qz-score">' + score + ' / ' + n + '</div>' +
+        '<h3>' + esc(nameEl.value.trim()) + ' · ' + esc(teamEl.value) + '</h3>' +
+        '<p>' + (missed.length ? 'Missed: ' + missed.join(', ') + '. Scroll down to see the right answers.' : 'Every question right.') + '</p>' +
+        '<p class="qz-sent" id="qzSent">Sending your score to the coaches…</p>' +
+        '<div class="qz-actions"><a class="btn btn-primary" href="quiz.html?q=' + esc(quiz.slug) + '">Take it again</a><a class="btn btn-outline" href="quiz.html">All quizzes</a></div></div>';
+      res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      var body = new URLSearchParams({
+        'form-name': 'quiz-results', 'bot-field': '',
+        name: nameEl.value.trim(), team: teamEl.value, quiz: quiz.title,
+        score: score + '/' + n, missed: missed.length ? missed.join(', ') : 'none'
+      });
+      var sent = document.getElementById('qzSent');
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); sent.className = 'qz-sent ok'; sent.textContent = 'Your score was sent to the coaches.'; })
+        .catch(function () { sent.className = 'qz-sent fail'; sent.textContent = 'Your score could not be sent. Take a screenshot of this and send it to your coach.'; });
+    });
+    } // end start()
+  })();
+  </script>
+</body>
+</html>
