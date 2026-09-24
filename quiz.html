@@ -23,8 +23,12 @@
     .qz-who input, .qz-who select { width: 100%; font: inherit; font-size: 1.1rem; padding: 10px 12px; border: 2px solid var(--gray-200); border-radius: 6px; background: var(--white); }
     .qz-who input:focus, .qz-who select:focus { outline: none; border-color: var(--columbia); }
     .qz-sub { font-size: 1.05rem; margin-bottom: 18px; text-align: center; }
-    .qz-gate { max-width: 520px; margin: 0 auto; }
-    .qz-gate-msg { grid-column: 1 / -1; margin: 0; font-size: 1.02rem; color: var(--gray-800); }
+    .qz-gate { max-width: 520px; margin: 0 auto; grid-template-columns: 1fr; }
+    .qz-gate-msg { margin: 0; font-size: 1.05rem; line-height: 1.4; color: var(--gray-800); }
+    .qz-gate-msg strong { color: var(--navy); }
+    .qz-me { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; background: #e8f2fb; border-left: 4px solid var(--columbia); border-radius: 6px; padding: 10px 14px; margin-bottom: 18px; font-size: 1.05rem; }
+    .qz-me strong { color: var(--navy); }
+    .qz-switch { margin-left: auto; font: inherit; font-size: .95rem; color: var(--columbia-text); background: none; border: 0; text-decoration: underline; cursor: pointer; padding: 0; }
 
     .qz-q { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 18px 14px; margin-bottom: 14px; border-left: 5px solid var(--gray-200); }
     .qz-q.answered { border-left-color: var(--columbia); }
@@ -186,31 +190,60 @@
         .then(function (key) { return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(L.iv) }, key, b64(L.data)); })
         .then(function (buf) { return JSON.parse(new TextDecoder().decode(buf)); });
     }
-    function showGate(msg) {
+    // A tracked name needs a first and last name so every score matches one player.
+    function fullName(s) { return String(s || '').trim().split(/\s+/).filter(function (w) { return /[a-z]/i.test(w); }).length >= 2; }
+    function signedIn() { return fullName(store('ghq-name')) && !!store('ghq-team'); }
+    var TEAM_OPTS = '<option value="">Pick one</option><option>Varsity</option><option>JV</option><option>Freshman</option>';
+
+    // Sign-in: team code (checked by decrypting the quizzes), first and last name, team.
+    function showGate(msg, keepCode) {
+      var needCode = !keepCode;
       root.innerHTML = '<form class="qz-who qz-gate" id="qzGate" autocomplete="off">' +
-        '<div><label for="qzCode">Team code</label><input id="qzCode" type="password" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="From your coach"></div>' +
-        '<div style="align-self:end"><button type="submit" class="btn btn-primary" style="width:100%">Open</button></div>' +
-        '<p class="qz-gate-msg">' + (msg || 'Players only. Enter the team code your coach gave you.') + '</p></form>';
-      var input = document.getElementById('qzCode');
-      input.focus();
+        '<p class="qz-gate-msg"><strong>Players only.</strong> ' + (msg || 'Sign in with your full name and the team code from your coach. Your scores go to the coaches under this name.') + '</p>' +
+        (needCode ? '<div class="qz-full"><label for="qzCode">Team code</label><input id="qzCode" type="password" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="From your coach"></div>' : '') +
+        '<div class="qz-full"><label for="qzGName">First and last name</label><input id="qzGName" type="text" autocomplete="name" placeholder="First and last name" value="' + esc(store('ghq-name')) + '"></div>' +
+        '<div class="qz-full"><label for="qzGTeam">Team</label><select id="qzGTeam">' + TEAM_OPTS + '</select></div>' +
+        '<div class="qz-full"><button type="submit" class="btn btn-primary" style="width:100%">Sign in</button></div></form>';
+      document.getElementById('qzGTeam').value = store('ghq-team');
+      var first = document.getElementById(needCode ? 'qzCode' : 'qzGName');
+      first.focus();
       document.getElementById('qzGate').addEventListener('submit', function (ev) {
         ev.preventDefault();
-        var code = input.value.trim();
-        if (!code) return;
-        unlock(code).then(function (data) { store('ghq-code', code); start(data); })
-          .catch(function (err) { showGate(err.message === 'unsupported' ? 'This browser cannot open the quiz. Try Safari or Chrome.' : 'That code is not right. Check with your coach.'); });
+        var name = document.getElementById('qzGName').value.trim().replace(/\s+/g, ' ');
+        var team = document.getElementById('qzGTeam').value;
+        if (!fullName(name)) return showGate('Put your first <em>and</em> last name so the coaches know who you are.', keepCode);
+        if (!team) return showGate('Pick your team.', keepCode);
+        var code = needCode ? document.getElementById('qzCode').value.trim() : store('ghq-code');
+        if (!code) return showGate('Enter the team code from your coach.');
+        unlock(code).then(function (data) {
+          store('ghq-code', code); store('ghq-name', name); store('ghq-team', team); start(data);
+        }).catch(function (err) {
+          store('ghq-name', name); store('ghq-team', team);
+          showGate(err.message === 'unsupported' ? 'This browser cannot open the quiz. Try Safari or Chrome.' : 'That code is not right. Check with your coach.');
+        });
       });
     }
     var saved = store('ghq-code');
-    if (saved) unlock(saved).then(start).catch(function () { store('ghq-code', ''); showGate(); });
+    if (saved) unlock(saved).then(function (data) { if (signedIn()) start(data); else showGate('', true); })
+      .catch(function () { store('ghq-code', ''); showGate(); });
     else showGate();
 
     function start(QUIZZES) {
     var quiz = QUIZZES.filter(function (x) { return x.slug === slug; })[0];
+    var playerName = store('ghq-name'), playerTeam = store('ghq-team');
+    function meStrip(lead) {
+      return '<div class="qz-me">' + lead + ' <strong>' + esc(playerName) + ' · ' + esc(playerTeam) + '</strong>' +
+        '<button type="button" class="qz-switch">Not you? Switch player</button></div>';
+    }
+    // Switching clears the name on this device (the team code stays) and reloads to the sign-in.
+    root.addEventListener('click', function (ev) {
+      if (!ev.target.closest('.qz-switch')) return;
+      store('ghq-name', ''); store('ghq-team', ''); location.reload();
+    });
 
     // ---------- picker ----------
     if (!quiz) {
-      root.innerHTML = '<p class="qz-intro">Pick a quiz. Put in your name so your score goes to the coaches.</p><div class="qz-pick">' +
+      root.innerHTML = meStrip('Signed in as') + '<p class="qz-intro">Pick a quiz. Your score goes to the coaches under your name.</p><div class="qz-pick">' +
         QUIZZES.map(function (x) {
           return '<a class="qz-card" href="quiz.html?q=' + esc(x.slug) + '"><h3>' + esc(x.title) + '</h3><p>' + esc(x.sub) + '</p><span>' + x.questions.length + ' questions &rarr;</span></a>';
         }).join('') + '</div>';
@@ -228,10 +261,7 @@
     root.innerHTML =
       '<p class="qz-sub">' + esc(quiz.sub) + '</p>' +
       '<div id="qzResult"></div>' +
-      '<div class="qz-who">' +
-        '<div><label for="qzName">Your name</label><input id="qzName" type="text" autocomplete="name" placeholder="First and last name"></div>' +
-        '<div><label for="qzTeam">Team</label><select id="qzTeam"><option value="">Pick one</option><option>Varsity</option><option>JV</option><option>Freshman</option></select></div>' +
-      '</div>' +
+      meStrip('Taking this quiz as') +
       quiz.questions.map(function (item, i) {
         return '<div class="qz-q" id="qzq' + i + '"><div class="qz-qt"><span class="qz-n">' + (i + 1) + '</span><span>' + esc(item.q) + '</span></div>' +
           '<div class="qz-opts" role="radiogroup">' + item.o.map(function (o, j) {
@@ -241,19 +271,12 @@
       '<div class="qz-bar"><span class="qz-count"><span id="qzCount">0 of ' + n + ' answered</span><span class="qz-hint" id="qzHint"></span></span>' +
       '<button type="button" class="btn btn-primary" id="qzSubmit" disabled>Submit</button></div>';
 
-    var nameEl = document.getElementById('qzName');
-    var teamEl = document.getElementById('qzTeam');
     var submitEl = document.getElementById('qzSubmit');
-    nameEl.value = store('ghq-name');
-    teamEl.value = store('ghq-team');
 
     function refresh() {
       var done = answers.filter(function (a) { return a >= 0; }).length;
       document.getElementById('qzCount').textContent = done + ' of ' + n + ' answered';
-      var hint = '';
-      if (!nameEl.value.trim()) hint = 'Put your name at the top.';
-      else if (!teamEl.value) hint = 'Pick your team at the top.';
-      else if (done < n) hint = 'Answer every question to submit.';
+      var hint = done < n ? 'Answer every question to submit.' : '';
       document.getElementById('qzHint').textContent = hint;
       submitEl.disabled = !!hint;
     }
@@ -272,8 +295,6 @@
       });
       refresh();
     });
-    nameEl.addEventListener('input', function () { store('ghq-name', nameEl.value); refresh(); });
-    teamEl.addEventListener('change', function () { store('ghq-team', teamEl.value); refresh(); });
     refresh();
 
     submitEl.addEventListener('click', function () {
@@ -294,12 +315,12 @@
         box.querySelector('.qz-why').innerHTML = (right ? '<strong>Correct.</strong> ' : '<strong>Answer: ' + LETTERS[item.a] + '.</strong> ') + esc(item.e);
       });
       root.classList.add('qz-done');
-      nameEl.disabled = teamEl.disabled = true;
+      var sw = root.querySelector('.qz-me .qz-switch'); if (sw) sw.remove();
       document.querySelector('.qz-bar').style.display = 'none';
 
       var res = document.getElementById('qzResult');
       res.innerHTML = '<div class="qz-result"><div class="qz-score">' + score + ' / ' + n + '</div>' +
-        '<h3>' + esc(nameEl.value.trim()) + ' · ' + esc(teamEl.value) + '</h3>' +
+        '<h3>' + esc(playerName) + ' · ' + esc(playerTeam) + '</h3>' +
         '<p>' + (missed.length ? 'Missed: ' + missed.join(', ') + '. Scroll down to see the right answers.' : 'Every question right.') + '</p>' +
         '<p class="qz-sent" id="qzSent">Sending your score to the coaches…</p>' +
         '<div class="qz-actions"><a class="btn btn-primary" href="quiz.html?q=' + esc(quiz.slug) + '">Take it again</a><a class="btn btn-outline" href="quiz.html">All quizzes</a></div></div>';
@@ -307,7 +328,7 @@
 
       var body = new URLSearchParams({
         'form-name': 'quiz-results', 'bot-field': '',
-        name: nameEl.value.trim(), team: teamEl.value, quiz: quiz.title,
+        name: playerName, team: playerTeam, quiz: quiz.title,
         score: score + '/' + n, missed: missed.length ? missed.join(', ') : 'none'
       });
       var sent = document.getElementById('qzSent');
