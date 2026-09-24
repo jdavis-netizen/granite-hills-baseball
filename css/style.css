@@ -1637,15 +1637,15 @@ body { background: #F3F6FA; }
   white-space: nowrap;
   background: transparent;
   color: rgba(255,255,255,0.85);
-  padding: 8px 9px;
+  padding: 8px 7px;
   font-size: 0.8rem;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   border-radius: 6px;
 }
 .main-nav a::after {
   content: '';
   position: absolute;
-  left: 9px; right: 9px; bottom: 3px;
+  left: 7px; right: 7px; bottom: 3px;
   height: 2px;
   background: var(--columbia);
   border-radius: 2px;
@@ -1658,8 +1658,8 @@ body { background: #F3F6FA; }
 .main-nav a:hover::after, .main-nav a.active::after { transform: scaleX(1); }
 .hamburger span { background: var(--columbia); }
 
-/* Collapse to the menu button earlier: 13 links don't fit under ~1180px */
-@media (max-width: 1180px) {
+/* Collapse to the menu button earlier: 14 links don't fit under ~1240px */
+@media (max-width: 1240px) {
   .hamburger { display: flex; }
   .main-nav {
     display: none;

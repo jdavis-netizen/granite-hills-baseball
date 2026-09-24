@@ -98,6 +98,7 @@
           <li><a href="records.html">Records</a></li>
           <li><a href="alumni.html">Alumni</a></li>
           <li><a href="tracker.html">Tracker</a></li>
+          <li><a href="quiz.html" class="active">Quizzes</a></li>
           <li><a href="https://granitehillsbaseball.itemorder.com/shop/home/" target="_blank">Shop</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -110,7 +111,7 @@
 
   <section class="page-banner">
     <h2 id="qzBannerTitle">Team Quizzes</h2>
-    <p id="qzBannerSub">Rules and game situations for Eagles players.</p>
+    <p id="qzBannerSub">Rules and game situations for Eagles players and parents.</p>
   </section>
 
   <section class="section">
@@ -193,16 +194,16 @@
     // A tracked name needs a first and last name so every score matches one player.
     function fullName(s) { return String(s || '').trim().split(/\s+/).filter(function (w) { return /[a-z]/i.test(w); }).length >= 2; }
     function signedIn() { return fullName(store('ghq-name')) && !!store('ghq-team'); }
-    var TEAM_OPTS = '<option value="">Pick one</option><option>Varsity</option><option>JV</option><option>Freshman</option>';
+    var TEAM_OPTS = '<option value="">Pick one</option><option>Varsity</option><option>JV</option><option>Freshman</option><option>Parent</option>';
 
     // Sign-in: team code (checked by decrypting the quizzes), first and last name, team.
     function showGate(msg, keepCode) {
       var needCode = !keepCode;
       root.innerHTML = '<form class="qz-who qz-gate" id="qzGate" autocomplete="off">' +
-        '<p class="qz-gate-msg"><strong>Players only.</strong> ' + (msg || 'Sign in with your full name and the team code from your coach. Your scores go to the coaches under this name.') + '</p>' +
+        '<p class="qz-gate-msg"><strong>Players and parents.</strong> ' + (msg || 'Sign in with your full name and the team code from the coaches. Players pick your team. Parents pick Parent. Your scores go to the coaches under this name.') + '</p>' +
         (needCode ? '<div class="qz-full"><label for="qzCode">Team code</label><input id="qzCode" type="password" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="From your coach"></div>' : '') +
         '<div class="qz-full"><label for="qzGName">First and last name</label><input id="qzGName" type="text" autocomplete="name" placeholder="First and last name" value="' + esc(store('ghq-name')) + '"></div>' +
-        '<div class="qz-full"><label for="qzGTeam">Team</label><select id="qzGTeam">' + TEAM_OPTS + '</select></div>' +
+        '<div class="qz-full"><label for="qzGTeam">Team or parent</label><select id="qzGTeam">' + TEAM_OPTS + '</select></div>' +
         '<div class="qz-full"><button type="submit" class="btn btn-primary" style="width:100%">Sign in</button></div></form>';
       document.getElementById('qzGTeam').value = store('ghq-team');
       var first = document.getElementById(needCode ? 'qzCode' : 'qzGName');
@@ -212,7 +213,7 @@
         var name = document.getElementById('qzGName').value.trim().replace(/\s+/g, ' ');
         var team = document.getElementById('qzGTeam').value;
         if (!fullName(name)) return showGate('Put your first <em>and</em> last name so the coaches know who you are.', keepCode);
-        if (!team) return showGate('Pick your team.', keepCode);
+        if (!team) return showGate('Pick your team, or Parent.', keepCode);
         var code = needCode ? document.getElementById('qzCode').value.trim() : store('ghq-code');
         if (!code) return showGate('Enter the team code from your coach.');
         unlock(code).then(function (data) {
