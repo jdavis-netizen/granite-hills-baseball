@@ -66,9 +66,67 @@
     .qz-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
     .qz-actions .btn-outline { background: transparent; border: 2px solid var(--columbia); color: var(--white); }
 
+    /* ---------- motion ---------- */
+    @keyframes qzUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    @keyframes qzPop { 0% { transform: scale(.55); } 60% { transform: scale(1.22); } 100% { transform: scale(1); } }
+    @keyframes qzShake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-7px); } 40%, 80% { transform: translateX(7px); } }
+    @keyframes qzGlow { 0% { box-shadow: 0 0 0 0 rgba(31,138,76,.45); } 100% { box-shadow: 0 0 0 14px rgba(31,138,76,0); } }
+    @keyframes qzPulse { 0%, 100% { filter: drop-shadow(0 0 0 rgba(105,179,231,0)); } 50% { filter: drop-shadow(0 0 7px rgba(105,179,231,.95)); } }
+
+    .qz-gate, .qz-me, .qz-intro, .qz-sub { animation: qzUp .55s cubic-bezier(.2,.7,.2,1) both; }
+    .qz-gate.qz-shake { animation: qzShake .42s ease; }
+    .qz-card { animation: qzUp .6s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 90ms + 120ms); position: relative; overflow: hidden; }
+    .qz-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(105,179,231,.18) 50%, transparent 70%); transform: translateX(-100%); transition: transform .7s ease; pointer-events: none; }
+    .qz-card:hover { box-shadow: 0 10px 28px rgba(4,30,66,.18), 0 0 0 2px rgba(105,179,231,.45); }
+    .qz-card:hover::after { transform: translateX(100%); }
+    .qz-card:hover span { letter-spacing: 1.6px; }
+    .qz-card span { transition: letter-spacing .3s ease; }
+
+    .qz-q.qz-anim { opacity: 0; transform: translateY(22px); transition: opacity .5s ease, transform .55s cubic-bezier(.2,.7,.2,1), border-color .3s ease; }
+    .qz-q.qz-anim.in { opacity: 1; transform: none; }
+    .qz-q .qz-n { transition: background .3s ease; }
+    .qz-q.answered .qz-n { background: var(--columbia-text); animation: qzPop .4s ease; }
+    .qz-opt { transition: transform .12s ease, border-color .2s ease, background .2s ease, box-shadow .25s ease; }
+    .qz-opt:active:not(:disabled) { transform: scale(.975); }
+    .qz-opt.sel { box-shadow: 0 0 0 3px rgba(105,179,231,.35); }
+    .qz-opt.sel b { animation: qzPop .35s ease; }
+    .qz-q.right { animation: qzGlow .7s ease-out; }
+    .qz-q.wrong .qz-opt.is-wrong { animation: qzShake .42s ease; }
+    .qz-done .qz-why { animation: qzUp .45s ease both; }
+
+    /* base-path progress: the runner goes around the bases as questions get answered */
+    .qz-prog { display: flex; align-items: center; gap: 12px; }
+    .qz-dia { width: 46px; height: 46px; flex: 0 0 46px; overflow: visible; }
+    .qz-dia .path { fill: none; stroke: rgba(255,255,255,.22); stroke-width: 2; }
+    .qz-dia .trail { fill: none; stroke: var(--columbia); stroke-width: 3; stroke-linecap: round; transition: stroke-dashoffset .45s ease; }
+    .qz-dia .base { fill: rgba(255,255,255,.28); transition: fill .3s ease; transform-box: fill-box; transform-origin: center; }
+    .qz-dia .base.lit { fill: var(--white); animation: qzPop .4s ease; }
+    .qz-dia .runner { fill: var(--columbia); stroke: var(--white); stroke-width: 1.5; }
+    .qz-dia.done { animation: qzPulse 1.2s ease-in-out 2; }
+    .qz-dia.done .base { fill: var(--columbia); }
+
+    /* results: score ring fills while the number counts up */
+    .qz-ring { position: relative; width: 150px; height: 150px; margin: 0 auto 6px; }
+    .qz-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .qz-ring .track { fill: none; stroke: rgba(255,255,255,.12); stroke-width: 10; }
+    .qz-ring .fill { fill: none; stroke: var(--columbia); stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1); }
+    .qz-ring .qz-score { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 3.4rem; line-height: 1; }
+    .qz-ring .qz-score small { font-family: var(--font-heading); font-size: .9rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.75); margin-top: 8px; }
+    .qz-result { animation: qzUp .5s ease both; }
+    .qz-confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .qz-gate, .qz-me, .qz-intro, .qz-sub, .qz-card, .qz-result, .qz-done .qz-why,
+      .qz-q.right, .qz-q.wrong .qz-opt.is-wrong, .qz-opt.sel b, .qz-q.answered .qz-n,
+      .qz-dia .base.lit, .qz-dia.done, .qz-gate.qz-shake { animation: none !important; }
+      .qz-q.qz-anim { opacity: 1; transform: none; transition: none; }
+      .qz-dia .trail, .qz-ring .fill { transition: none; }
+    }
+
     @media (max-width: 560px) {
       .qz-who { grid-template-columns: 1fr; }
       .qz-qt { font-size: 1.08rem; }
+      .qz-dia { width: 40px; height: 40px; flex-basis: 40px; }
     }
   </style>
 </head>
@@ -191,6 +249,48 @@
         .then(function (key) { return crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(L.iv) }, key, b64(L.data)); })
         .then(function (buf) { return JSON.parse(new TextDecoder().decode(buf)); });
     }
+    var CALM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    // Tween a number from a to b over ms, calling step(value). Skips straight to the end for reduced motion.
+    function tween(a, b, ms, step, done) {
+      if (CALM || !window.requestAnimationFrame) { step(b); if (done) done(); return; }
+      var t0 = null, finished = false;
+      function finish() { if (finished) return; finished = true; step(b); if (done) done(); }
+      function frame(t) {
+        if (finished) return;
+        if (t0 === null) t0 = t;
+        var k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+        if (k < 1) { step(a + (b - a) * e); requestAnimationFrame(frame); } else finish();
+      }
+      requestAnimationFrame(frame);
+      setTimeout(finish, ms + 200); // safety net: always land on the final value even if the browser skips frames
+    }
+
+    // Navy / columbia / white confetti burst for a perfect score.
+    function confetti() {
+      if (CALM) return;
+      var c = document.createElement('canvas'); c.className = 'qz-confetti';
+      var dpr = window.devicePixelRatio || 1, W = innerWidth, H = innerHeight;
+      c.width = W * dpr; c.height = H * dpr; document.body.appendChild(c);
+      var ctx = c.getContext('2d'); ctx.scale(dpr, dpr);
+      var colors = ['#041E42', '#69B3E7', '#ffffff', '#4E9BD9', '#0A3161'], bits = [];
+      for (var i = 0; i < 150; i++) {
+        var ang = -Math.PI / 2 + (Math.random() - .5) * 1.9, sp = 6 + Math.random() * 9;
+        bits.push({ x: W / 2 + (Math.random() - .5) * 120, y: H * .32, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp,
+          w: 6 + Math.random() * 6, h: 3 + Math.random() * 5, r: Math.random() * 6, vr: (Math.random() - .5) * .35, col: colors[i % colors.length] });
+      }
+      var t0 = performance.now();
+      (function draw(t) {
+        var age = t - t0; ctx.clearRect(0, 0, W, H);
+        bits.forEach(function (b) {
+          b.vy += .28; b.vx *= .99; b.x += b.vx; b.y += b.vy; b.r += b.vr;
+          ctx.save(); ctx.globalAlpha = Math.max(0, 1 - age / 2800); ctx.translate(b.x, b.y); ctx.rotate(b.r);
+          ctx.fillStyle = b.col; ctx.strokeStyle = 'rgba(4,30,66,.25)'; ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h); ctx.strokeRect(-b.w / 2, -b.h / 2, b.w, b.h); ctx.restore();
+        });
+        if (age < 2800) requestAnimationFrame(draw); else c.remove();
+      })(t0);
+    }
+
     // A tracked name needs a first and last name so every score matches one player.
     function fullName(s) { return String(s || '').trim().split(/\s+/).filter(function (w) { return /[a-z]/i.test(w); }).length >= 2; }
     function signedIn() { return fullName(store('ghq-name')) && !!store('ghq-team'); }
@@ -206,6 +306,7 @@
         '<div class="qz-full"><label for="qzGTeam">Team or parent</label><select id="qzGTeam">' + TEAM_OPTS + '</select></div>' +
         '<div class="qz-full"><button type="submit" class="btn btn-primary" style="width:100%">Sign in</button></div></form>';
       document.getElementById('qzGTeam').value = store('ghq-team');
+      if (msg) document.getElementById('qzGate').classList.add('qz-shake');
       var first = document.getElementById(needCode ? 'qzCode' : 'qzGName');
       first.focus();
       document.getElementById('qzGate').addEventListener('submit', function (ev) {
@@ -245,8 +346,8 @@
     // ---------- picker ----------
     if (!quiz) {
       root.innerHTML = meStrip('Signed in as') + '<p class="qz-intro">Pick a quiz. Your score goes to the coaches under your name.</p><div class="qz-pick">' +
-        QUIZZES.map(function (x) {
-          return '<a class="qz-card" href="quiz.html?q=' + esc(x.slug) + '"><h3>' + esc(x.title) + '</h3><p>' + esc(x.sub) + '</p><span>' + x.questions.length + ' questions &rarr;</span></a>';
+        QUIZZES.map(function (x, i) {
+          return '<a class="qz-card" style="--i:' + i + '" href="quiz.html?q=' + esc(x.slug) + '"><h3>' + esc(x.title) + '</h3><p>' + esc(x.sub) + '</p><span>' + x.questions.length + ' questions &rarr;</span></a>';
         }).join('') + '</div>';
       return;
     }
@@ -264,19 +365,66 @@
       '<div id="qzResult"></div>' +
       meStrip('Taking this quiz as') +
       quiz.questions.map(function (item, i) {
-        return '<div class="qz-q" id="qzq' + i + '"><div class="qz-qt"><span class="qz-n">' + (i + 1) + '</span><span>' + esc(item.q) + '</span></div>' +
+        return '<div class="qz-q qz-anim" id="qzq' + i + '"><div class="qz-qt"><span class="qz-n">' + (i + 1) + '</span><span>' + esc(item.q) + '</span></div>' +
           '<div class="qz-opts" role="radiogroup">' + item.o.map(function (o, j) {
             return '<button type="button" class="qz-opt" role="radio" aria-checked="false" data-q="' + i + '" data-o="' + j + '"><b>' + LETTERS[j] + '</b><span>' + esc(o) + '</span></button>';
           }).join('') + '</div><div class="qz-why"></div></div>';
       }).join('') +
-      '<div class="qz-bar"><span class="qz-count"><span id="qzCount">0 of ' + n + ' answered</span><span class="qz-hint" id="qzHint"></span></span>' +
+      '<div class="qz-bar"><span class="qz-prog">' +
+        '<svg class="qz-dia" viewBox="0 0 48 48" aria-hidden="true">' +
+          '<path class="path" d="M24 41 L41 24 L24 7 L7 24 Z"/>' +
+          '<path class="trail" id="qzTrail" d="M24 41 L41 24 L24 7 L7 24 Z"/>' +
+          '<polygon class="base" data-b="1" points="41,19.5 45.5,24 41,28.5 36.5,24"/>' +
+          '<polygon class="base" data-b="2" points="24,2.5 28.5,7 24,11.5 19.5,7"/>' +
+          '<polygon class="base" data-b="3" points="7,19.5 11.5,24 7,28.5 2.5,24"/>' +
+          '<path class="base" data-b="4" d="M20.5 38 h7 v3.5 l-3.5 3.5 l-3.5 -3.5 Z"/>' +
+          '<circle class="runner" id="qzRunner" cx="24" cy="41" r="3.6"/>' +
+        '</svg>' +
+        '<span class="qz-count"><span id="qzCount">0 of ' + n + ' answered</span><span class="qz-hint" id="qzHint"></span></span></span>' +
       '<button type="button" class="btn btn-primary" id="qzSubmit" disabled>Submit</button></div>';
 
     var submitEl = document.getElementById('qzSubmit');
 
+    // Questions slide in as they scroll into view.
+    var qBoxes = root.querySelectorAll('.qz-q.qz-anim');
+    function showAll() { qBoxes.forEach(function (b) { b.classList.add('in'); }); }
+    if ('IntersectionObserver' in window && !CALM) {
+      var ioSeen = false;
+      var io = new IntersectionObserver(function (entries) {
+        ioSeen = true;
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      qBoxes.forEach(function (b) { io.observe(b); });
+      // Safety net: if the observer never reports (some in-app browsers), just show everything.
+      setTimeout(function () { if (!ioSeen) { io.disconnect(); showAll(); } }, 1500);
+    } else showAll();
+
+    // Base-path progress: home -> 1st -> 2nd -> 3rd -> home as the quiz fills in.
+    var PTS = [[24, 41], [41, 24], [24, 7], [7, 24], [24, 41]];
+    var trail = document.getElementById('qzTrail'), runner = document.getElementById('qzRunner');
+    var LEN = 4 * Math.sqrt(17 * 17 + 17 * 17), progNow = 0;
+    trail.style.strokeDasharray = LEN; trail.style.strokeDashoffset = LEN;
+    function placeRunner(p) {
+      var s = Math.min(3, Math.floor(p * 4)), t = p * 4 - s, A = PTS[s], B = PTS[s + 1];
+      runner.setAttribute('cx', (A[0] + (B[0] - A[0]) * t).toFixed(2));
+      runner.setAttribute('cy', (A[1] + (B[1] - A[1]) * t).toFixed(2));
+    }
+    function setProgress(p) {
+      trail.style.strokeDashoffset = LEN * (1 - p);
+      root.querySelectorAll('.qz-dia .base').forEach(function (b) {
+        var on = p >= +b.dataset.b / 4 - 1e-9;
+        if (on && !b.classList.contains('lit')) b.classList.add('lit');
+        if (!on) b.classList.remove('lit');
+      });
+      root.querySelector('.qz-dia').classList.toggle('done', p >= 1);
+      var from = progNow; progNow = p;
+      tween(from, p, 450, placeRunner);
+    }
+
     function refresh() {
       var done = answers.filter(function (a) { return a >= 0; }).length;
       document.getElementById('qzCount').textContent = done + ' of ' + n + ' answered';
+      setProgress(done / n);
       var hint = done < n ? 'Answer every question to submit.' : '';
       document.getElementById('qzHint').textContent = hint;
       submitEl.disabled = !!hint;
@@ -306,26 +454,39 @@
         var right = answers[i] === item.a;
         if (right) score++; else missed.push(i + 1);
         var box = document.getElementById('qzq' + i);
-        box.classList.add(right ? 'right' : 'wrong');
-        box.querySelectorAll('.qz-opt').forEach(function (b) {
-          var o = +b.dataset.o;
-          b.disabled = true;
-          if (o === item.a) b.classList.add('is-right');
-          else if (o === answers[i]) b.classList.add('is-wrong');
-        });
+        box.querySelectorAll('.qz-opt').forEach(function (b) { b.disabled = true; });
         box.querySelector('.qz-why').innerHTML = (right ? '<strong>Correct.</strong> ' : '<strong>Answer: ' + LETTERS[item.a] + '.</strong> ') + esc(item.e);
+        // Reveal right/wrong one question after another.
+        setTimeout(function () {
+          box.classList.add('in', right ? 'right' : 'wrong');
+          box.querySelectorAll('.qz-opt').forEach(function (b) {
+            var o = +b.dataset.o;
+            if (o === item.a) b.classList.add('is-right');
+            else if (o === answers[i]) b.classList.add('is-wrong');
+          });
+        }, CALM ? 0 : 500 + i * 45);
       });
       root.classList.add('qz-done');
       var sw = root.querySelector('.qz-me .qz-switch'); if (sw) sw.remove();
       document.querySelector('.qz-bar').style.display = 'none';
 
       var res = document.getElementById('qzResult');
-      res.innerHTML = '<div class="qz-result"><div class="qz-score">' + score + ' / ' + n + '</div>' +
+      var CIRC = 2 * Math.PI * 64;
+      res.innerHTML = '<div class="qz-result"><div class="qz-ring">' +
+        '<svg viewBox="0 0 150 150" aria-hidden="true"><circle class="track" cx="75" cy="75" r="64"/>' +
+        '<circle class="fill" id="qzRingFill" cx="75" cy="75" r="64" style="stroke-dasharray:' + CIRC + ';stroke-dashoffset:' + CIRC + '"/></svg>' +
+        '<div class="qz-score" aria-label="' + score + ' out of ' + n + '"><span id="qzNum">0</span><small>of ' + n + ' · ' + Math.round(score / n * 100) + '%</small></div></div>' +
         '<h3>' + esc(playerName) + ' · ' + esc(playerTeam) + '</h3>' +
         '<p>' + (missed.length ? 'Missed: ' + missed.join(', ') + '. Scroll down to see the right answers.' : 'Every question right.') + '</p>' +
         '<p class="qz-sent" id="qzSent">Sending your score to the coaches…</p>' +
         '<div class="qz-actions"><a class="btn btn-primary" href="quiz.html?q=' + esc(quiz.slug) + '">Take it again</a><a class="btn btn-outline" href="quiz.html">All quizzes</a></div></div>';
-      res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      res.scrollIntoView({ behavior: CALM ? 'auto' : 'smooth', block: 'start' });
+      // Fill the ring and count the score up once the result is on screen.
+      setTimeout(function () {
+        document.getElementById('qzRingFill').style.strokeDashoffset = CIRC * (1 - score / n);
+        var numEl = document.getElementById('qzNum');
+        tween(0, score, 1200, function (v) { numEl.textContent = Math.round(v); }, function () { if (score === n) confetti(); });
+      }, CALM ? 0 : 350);
 
       var body = new URLSearchParams({
         'form-name': 'quiz-results', 'bot-field': '',
