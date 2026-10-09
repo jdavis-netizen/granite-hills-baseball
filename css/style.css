@@ -1658,8 +1658,8 @@ body { background: #F3F6FA; }
 .main-nav a:hover::after, .main-nav a.active::after { transform: scaleX(1); }
 .hamburger span { background: var(--columbia); }
 
-/* Collapse to the menu button earlier: 14 links don't fit under ~1240px */
-@media (max-width: 1240px) {
+/* Collapse to the menu button earlier: 15 links need ~1280px */
+@media (max-width: 1279px) {
   .hamburger { display: flex; }
   .main-nav {
     display: none;
@@ -2001,7 +2001,7 @@ body { background: #F3F6FA; }
   /* Era headers put a long badge beside the title; let them stack on
      narrow screens instead of running off the edge. */
   .era-header { flex-wrap: wrap; gap: 10px; }
-  .era-badge { white-space: normal; }
+  .era-header .era-badge { white-space: normal; }
   .era-header h3 { font-size: 1.5rem; }
 }
 
@@ -2271,3 +2271,277 @@ body { background: #F3F6FA; }
 .gym-banner { display: flex; flex-direction: column; }
 .gb-trim { flex: 1; display: flex; flex-direction: column; }
 .gb-felt { flex: 1; }
+
+/* ============================================= */
+/* ===== Sign Up menu tab + new player meeting ===== */
+/* ============================================= */
+
+/* Sign Up: the last menu item, a columbia pill so it is easy to point to */
+.main-nav a.nav-signup {
+  margin-left: 6px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  color: var(--navy);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--columbia) 0%, var(--columbia-dark) 100%);
+}
+.main-nav a.nav-signup::after { display: none; }
+.main-nav a.nav-signup:hover { color: var(--navy); background: linear-gradient(135deg, #8CC7EE 0%, var(--columbia) 100%); }
+.main-nav a.nav-signup.active { color: var(--navy); box-shadow: 0 0 0 2px rgba(255,255,255,0.55); }
+
+/* While a meeting notice is live, the tab pulses gently */
+html.meeting-live .main-nav a.nav-signup:not(.show-me) { animation: signupPulse 2.2s ease-out infinite; }
+@keyframes signupPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(105,179,231,0.65); }
+  100% { box-shadow: 0 0 0 12px rgba(105,179,231,0); }
+}
+
+/* "Show Me the Tab" highlight (outline stays even with reduced motion) */
+.main-nav a.nav-signup.show-me {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+  animation: signupShow 0.9s ease-in-out 6;
+}
+@keyframes signupShow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.0), 0 0 18px rgba(105,179,231,0.5); }
+  50%      { box-shadow: 0 0 0 7px rgba(255,255,255,0.35), 0 0 34px rgba(105,179,231,0.95); }
+}
+
+@media (max-width: 1279px) {
+  .main-nav a.nav-signup {
+    margin: 10px 0 2px;
+    padding: 13px 14px;
+    border-radius: 10px;
+    border-bottom: none;
+    text-align: center;
+    background: linear-gradient(135deg, var(--columbia) 0%, var(--columbia-dark) 100%);
+  }
+}
+
+/* Hero notice pill (sits where the old championship badge was) */
+.hero-notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 18px;
+  margin-bottom: 20px;
+  border-radius: 999px;
+  background: rgba(4,30,66,0.55);
+  border: 1px solid rgba(105,179,231,0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+.hero-notice strong { color: var(--columbia); font-weight: 700; }
+.hero-notice:hover { transform: translateY(-2px); background: rgba(105,179,231,0.2); border-color: var(--columbia); }
+.hero-notice-dot {
+  flex-shrink: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--columbia);
+  animation: tickerPulse 1.8s ease-out infinite;
+}
+
+/* Meeting section on the home page */
+.meeting { padding: 36px 20px; background: #F3F6FA; scroll-margin-top: 80px; }
+.meeting-card {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(105,179,231,0.3);
+  background: linear-gradient(160deg, var(--navy-light) 0%, var(--navy) 55%, #02132B 100%);
+  box-shadow: 0 16px 40px rgba(4,30,66,0.22);
+  color: var(--white);
+}
+.meeting-when {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 28px 18px;
+  background: rgba(105,179,231,0.09);
+  border-right: 1px dashed rgba(105,179,231,0.4);
+}
+.meeting-day {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--columbia);
+}
+.meeting-date {
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  line-height: 1;
+  margin: 6px 0 14px;
+  background: linear-gradient(180deg, #ffffff 25%, var(--columbia) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 16px rgba(105,179,231,0.35));
+}
+.meeting-where {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid rgba(105,179,231,0.45);
+  border-radius: 999px;
+}
+.meeting-body { min-width: 0; padding: 26px 30px 28px; }
+.meeting-title {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  background: linear-gradient(180deg, #ffffff 30%, var(--columbia) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.meeting-lede { margin: 6px 0 16px; color: rgba(255,255,255,0.82); line-height: 1.55; }
+.meeting-steps { list-style: none; counter-reset: step; display: grid; gap: 10px; margin: 0 0 18px; padding: 0; }
+.meeting-steps li { counter-increment: step; position: relative; padding-left: 40px; line-height: 1.5; color: rgba(255,255,255,0.92); }
+.meeting-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0; top: -1px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--navy);
+  background: linear-gradient(135deg, var(--columbia), var(--columbia-dark));
+}
+.tab-chip {
+  display: inline-block;
+  padding: 1px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--columbia), var(--columbia-dark));
+  color: var(--navy);
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Miniature of the menu bar, with the Sign Up tab lit */
+.nav-demo {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 0 0 20px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: rgba(2,19,43,0.75);
+  border: 1px solid rgba(105,179,231,0.22);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.nav-demo span { padding: 5px 7px; white-space: nowrap; }
+.nav-demo .nav-demo-signup {
+  margin-left: 4px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  color: var(--navy);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--columbia), var(--columbia-dark));
+  animation: signupPulse 2.2s ease-out infinite;
+}
+.nav-demo .nav-demo-label { color: var(--columbia); font-weight: 600; text-transform: none; letter-spacing: 0.5px; }
+.meeting-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Sign-up page callout */
+.meeting-callout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 26px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  color: var(--white);
+  background: linear-gradient(160deg, var(--navy-light) 0%, var(--navy) 60%, #02132B 100%);
+  border: 1px solid rgba(105,179,231,0.35);
+  box-shadow: 0 10px 28px rgba(4,30,66,0.18);
+}
+.meeting-callout p { margin: 0; line-height: 1.5; color: rgba(255,255,255,0.88); }
+.meeting-callout strong { color: var(--white); }
+.meeting-callout-date {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(105,179,231,0.45);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--white);
+}
+.meeting-callout-date span {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--columbia);
+  margin-bottom: 4px;
+}
+
+@media (max-width: 760px) {
+  .meeting-card { grid-template-columns: minmax(0, 1fr); }
+  .meeting-when { border-right: none; border-bottom: 1px dashed rgba(105,179,231,0.4); padding: 20px 16px; }
+  .meeting-date { font-size: 2.8rem; margin-bottom: 10px; }
+  .meeting-body { padding: 22px 18px 24px; }
+  /* keep the demo short on phones: ... Contact | Sign Up <- this tab */
+  .nav-demo span:nth-child(-n+3), .nav-demo span:nth-child(5), .nav-demo span:nth-child(6) { display: none; }
+  .meeting-actions .btn { flex: 1 1 100%; text-align: center; }
+}
+@media (max-width: 600px) {
+  .meeting { padding: 26px 14px; }
+  .hero-notice { font-size: 0.72rem; letter-spacing: 0.8px; padding: 8px 14px; gap: 8px; }
+  .meeting-callout { align-items: flex-start; }
+}
+
+/* 15 menu items: widen only the header bar (page content stays 1200px) and tighten the tabs a little */
+.header-inner { max-width: 1320px; }
+@media (min-width: 1280px) {
+  .logo-text h1 { font-size: 1.15rem; }
+  .main-nav a { padding: 8px 6px; }
+  .main-nav a::after { left: 6px; right: 6px; }
+}
+
+/* Mini menu: drop the first tabs on mid-size screens; wrap rather than clip if still tight */
+.nav-demo { flex-wrap: wrap; }
+@media (max-width: 1000px) {
+  .nav-demo span:nth-child(-n+3) { display: none; }
+}
+
+/* Smallest phones (~320px): the logo and menu button need to share the bar */
+@media (max-width: 360px) {
+  .logo { gap: 8px; }
+  .logo-icon { width: 36px; height: 36px; }
+  .logo-text h1 { font-size: 0.88rem; }
+  .logo-text span { font-size: 0.58rem; letter-spacing: 1px; }
+  .header-inner { padding: 0 14px; }
+}

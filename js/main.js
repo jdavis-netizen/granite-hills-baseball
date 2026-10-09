@@ -92,3 +92,37 @@ function handleContact(e) {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 })();
+
+// Time-limited notices: anything with data-expires is removed once that moment has passed.
+// While a meeting notice (data-meeting) is still live, the Sign Up tab in the menu pulses.
+(function () {
+  var now = Date.now();
+  var live = false;
+  document.querySelectorAll('[data-expires]').forEach(function (el) {
+    var t = Date.parse(el.getAttribute('data-expires'));
+    if (!isNaN(t) && now >= t) el.remove();
+    else if (el.hasAttribute('data-meeting')) live = true;
+  });
+  if (live) document.documentElement.classList.add('meeting-live');
+
+  // "Show Me the Tab": scroll to the top and light up the real Sign Up tab,
+  // opening the phone menu first when the menu is collapsed.
+  document.querySelectorAll('[data-show-signup]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var tab = document.querySelector('.main-nav a.nav-signup');
+      if (!tab) return;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      var nav = document.getElementById('mainNav');
+      var burger = document.getElementById('hamburger');
+      if (burger && nav && getComputedStyle(burger).display !== 'none' && !nav.classList.contains('open')) {
+        nav.classList.add('open');
+      }
+      tab.classList.remove('show-me');
+      void tab.offsetWidth; // restart the animation on repeat clicks
+      tab.classList.add('show-me');
+      clearTimeout(tab._showMeTimer);
+      tab._showMeTimer = setTimeout(function () { tab.classList.remove('show-me'); }, 6000);
+    });
+  });
+})();
