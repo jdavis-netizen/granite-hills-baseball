@@ -2545,3 +2545,19 @@ html.meeting-live .main-nav a.nav-signup:not(.show-me) { animation: signupPulse 
   .logo-text span { font-size: 0.58rem; letter-spacing: 1px; }
   .header-inner { padding: 0 14px; }
 }
+
+/* --- Winter ball (schedule page + home) --- */
+.winter-ball { background: #EAF1F8; border-bottom: 1px solid rgba(4,30,66,0.08); }
+.wb-card { max-width: 860px; margin: 0 auto; }
+.wb-home { max-width: none; margin: 0 0 18px; }
+.wb-list li { grid-template-columns: 86px minmax(0, 1fr) auto; }
+.wb-opp { display: flex; flex-direction: column; min-width: 0; }
+.wb-site { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
+.wb-list-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; }
+.wb-list-cols li:last-child { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.wb-card .sched-card-title::before { content: '\2744\FE0E  '; -webkit-text-fill-color: var(--columbia); }
+@media (max-width: 900px) { .wb-list-cols { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) {
+  .wb-list-cols { grid-template-columns: 1fr; }
+  .wb-list li { grid-template-columns: 70px minmax(0, 1fr) auto; }
+}
