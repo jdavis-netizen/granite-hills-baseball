@@ -17,6 +17,8 @@ const SPOTS = {
   phx: { name: 'Phoenix Area, AZ', at: [-111.98, 33.47] },
   ie: { name: 'Inland Empire, CA', at: [-117.55, 34.0] },
   sb: { name: 'Santa Barbara, CA', at: [-119.85, 34.41] },
+  sf: { name: 'San Francisco, CA', at: [-122.45, 37.78] },
+  eug: { name: 'Eugene, OR', at: [-123.07, 44.05] },
   bay: { name: 'Santa Clara, CA', at: [-121.94, 37.35] },
   stk: { name: 'Stockton, CA', at: [-121.31, 37.98] },
   pul: { name: 'Pullman, WA', at: [-117.16, 46.73] },
@@ -29,7 +31,7 @@ const SPOTS = {
 const PLACES = [
   ['Sugar Land', 'tex'], ['Vancouver', 'van'], ['Arizona State', 'phx'], ['Washington State', 'pul'], ['Santa Clara', 'bay'],
   ['Pacific', 'stk'], ['Cal Baptist', 'ie'], ['Santa Barbara', 'sb'], ['Niagara', 'nia'], ['CSU-Pueblo', 'pue'],
-  ['Arizona Christian', 'phx'], ['La Verne', 'ie'], ['Cal State San Marcos', 'sd'], ['Baker', 'kan'], ['Grossmont', 'sd'], ['Southwestern', 'sd'],
+  ['Arizona Christian', 'phx'], ['La Verne', 'ie'], ['Cal State San Marcos', 'sd'], ['Baker', 'kan'], ['Grossmont', 'sd'], ['San Diego Toreros', 'sd'], ['San Francisco Dons', 'sf'], ['Oregon Ducks', 'eug'], ['Southwestern', 'sd'],
 ];
 
 let html = fs.readFileSync(path.join(root, 'tracker.html'), 'utf8');

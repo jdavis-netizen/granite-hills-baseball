@@ -13,6 +13,12 @@ const rosterTable = rosterHtml.slice(rosterHtml.indexOf('id="roster-varsity"'));
 const players = (rosterTable.slice(rosterTable.indexOf('<tbody>'), rosterTable.indexOf('</tbody>')).match(/<tr>[\s\S]*?<\/tr>/g) || [])
   .map(cellsOf).map(([num, name, pos, gr, ht, wt]) => ({ num, name, pos, gr, ht, wt }));
 
+// Played varsity games in 2026 but are not on the printed roster. Grade from MaxPreps; numbers from stats.html.
+players.push(
+  { num: '11', name: 'Kolton Hopkins', pos: '', gr: 'Fr.', ht: '', wt: '' },
+  { num: '26', name: 'Jace Pepin', pos: '', gr: 'Fr.', ht: '', wt: '' }
+);
+
 const statsHtml = read('stats.html');
 const tables = statsHtml.match(/<table class="stats-tbl">[\s\S]*?<\/table>/g) || [];
 function statTable(html) {
@@ -46,8 +52,8 @@ function card(p) {
                 <img class="pc-eagle" src="images/Eagle head   new 2023.png" alt="" width="90" height="90" loading="lazy">
                 <span class="pc-num">${p.num || 'GH'}</span>
                 <span class="pc-name">${p.name}</span>
-                <span class="pc-sub">${p.pos} <i aria-hidden="true"></i> ${GRADE[p.gr] || p.gr}</span>
-                <span class="pc-size">${p.ht} &middot; ${p.wt} lb</span>
+                <span class="pc-sub">${p.pos ? `${p.pos} <i aria-hidden="true"></i> ` : ''}${GRADE[p.gr] || p.gr}</span>
+                ${p.ht ? `<span class="pc-size">${p.ht} &middot; ${p.wt} lb</span>` : ''}
               </div>
               <div class="pc-face pc-back">
                 <span class="pc-back-name">${p.name}</span>
