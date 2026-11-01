@@ -42,6 +42,18 @@
     .sched-note { text-align:center; margin-top:18px; font-size:0.85rem; color:var(--gray-600); }
     .sched-tba { text-align:center; padding:28px 20px; border:1px dashed rgba(4,30,66,0.25); border-radius:14px; color:var(--gray-600); background:var(--white); }
   </style>
+  <meta name="theme-color" content="#041E42">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Granite Hills Baseball">
+  <meta property="og:title" content="Schedule - Granite Hills Baseball">
+  <meta property="og:url" content="https://granitehillsbaseball.netlify.app/schedule">
+  <meta property="og:image" content="https://granitehillsbaseball.netlify.app/images/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="css/upgrades.css">
 </head>
 <body>
 
@@ -84,6 +96,18 @@
   <section class="page-banner">
     <h2>2027 Game Schedule</h2>
     <p>Winter ball in January &bull; Spring season from March &mdash; All games and times subject to change</p>
+  </section>
+
+  <section class="section" style="padding-bottom:0;">
+    <div class="container">
+      <div class="cal-subscribe">
+        <p>Put every varsity and winter ball game on your phone. Subscribe with Apple or Google and schedule changes update on their own; a downloaded file does not update.</p>
+        <a class="cal-btn" href="webcal://granitehillsbaseball.netlify.app/cal/varsity.ics">iPhone / Apple Calendar</a>
+        <a class="cal-btn" href="https://calendar.google.com/calendar/r?cid=webcal%3A%2F%2Fgranitehillsbaseball.netlify.app%2Fcal%2Fvarsity.ics" target="_blank" rel="noopener">Google Calendar</a>
+        <a class="cal-btn" href="cal/varsity.ics" download>Download file</a>
+        <a class="cal-btn" href="cal/jv.ics" download>JV file</a>
+      </div>
+    </div>
   </section>
 
   <!-- ===================== WINTER BALL (from the Granite Hills Baseball Calendar) ===================== -->
@@ -495,6 +519,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/upgrades.js"></script>
   <script src="https://widgets.gc.com/static/js/sdk.v1.js"></script>
   <script>
     window.GC.team.schedule.init({

@@ -1,0 +1,196 @@
+/* ===== Nov 2026 upgrades: page transitions, baseball cards, season chart, alumni map, calendar, film ===== */
+
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: site-header; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+::selection { background: var(--columbia); color: var(--navy); }
+:focus-visible { outline: 2px solid var(--columbia); outline-offset: 3px; }
+
+/* --- Baseball cards --- */
+.roster-switch { display: flex; justify-content: center; gap: 6px; margin: 0 auto 28px; }
+.roster-switch button {
+  font-family: var(--font-heading); font-size: 0.95rem; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 9px 22px; min-height: 44px; border: 1px solid var(--navy); border-radius: 999px;
+  background: transparent; color: var(--navy); cursor: pointer; transition: background 0.2s, color 0.2s;
+}
+.roster-switch button[aria-pressed="true"] { background: var(--navy); color: var(--white); }
+
+.pc-grid {
+  list-style: none; display: grid; gap: 22px; max-width: 1180px; margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(208px, 1fr));
+}
+.pc-grid[hidden], #rosterTableWrap[hidden] { display: none; }
+.pc-wrap { perspective: 1100px; }
+.pc {
+  --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%;
+  position: relative; display: block; width: 100%; aspect-ratio: 5 / 7; border-radius: 14px;
+  transform: rotateX(var(--rx)) rotateY(var(--ry)); transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+.pc-flip {
+  position: absolute; inset: 0; z-index: 2; padding: 0; border: 0; background: transparent; border-radius: 14px;
+  cursor: pointer; transform: translateZ(2px);
+}
+.pc.tilting { transition: transform 0.08s linear; }
+.pc-inner {
+  position: relative; display: block; width: 100%; height: 100%;
+  transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pc.flipped .pc-inner { transform: rotateY(180deg); }
+.pc-face {
+  position: absolute; inset: 0; display: flex; flex-direction: column; overflow: hidden;
+  border-radius: 14px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 12px 26px rgba(4, 30, 66, 0.28);
+}
+.pc-front {
+  justify-content: flex-end; padding: 16px; color: var(--white);
+  background: linear-gradient(160deg, #0d3d78 0%, var(--navy) 58%, #02122a 100%);
+  border: 1px solid rgba(105, 179, 231, 0.55);
+}
+.pc-foil {
+  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: 0.14; transition: opacity 0.3s;
+  background:
+    radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.5), transparent 42%),
+    linear-gradient(115deg, transparent 22%, rgba(105, 179, 231, 0.5) 42%, rgba(255, 255, 255, 0.28) 50%, rgba(105, 179, 231, 0.5) 58%, transparent 78%);
+  background-size: 100% 100%, 240% 240%;
+  background-position: center, var(--mx) var(--my);
+}
+.pc.tilting .pc-foil, .pc:has(.pc-flip:focus-visible) .pc-foil { opacity: 0.85; }
+.pc-grid { overflow: clip; overflow-clip-margin: 40px; }
+.pc-eagle { position: absolute; top: 12px; right: 12px; width: 25%; height: auto; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4)); }
+.pc-num {
+  position: absolute; top: 8%; left: 14px; font-family: var(--font-display); font-size: clamp(4.4rem, 7.5vw, 5.6rem); line-height: 1;
+  background: linear-gradient(180deg, #ffffff 15%, var(--columbia) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 16px rgba(105, 179, 231, 0.4));
+}
+.pc-name {
+  position: relative; font-family: var(--font-heading); font-size: 1.32rem; font-weight: 600; line-height: 1.12;
+  letter-spacing: 0.5px; text-transform: uppercase; text-wrap: balance;
+}
+.pc-sub { position: relative; margin-top: 6px; font-size: 1rem; color: #bcdcf5; }
+.pc-sub i { display: inline-block; width: 4px; height: 4px; margin: 0 4px 3px; border-radius: 50%; background: var(--columbia); }
+.pc-size { position: relative; font-size: 0.92rem; color: #9cc4e4; font-variant-numeric: tabular-nums; }
+.pc-back {
+  transform: rotateY(180deg); padding: 14px; background: #f5f8fc; color: var(--navy);
+  border: 1px solid rgba(4, 30, 66, 0.25);
+}
+.pc-back-name { font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; text-transform: uppercase; line-height: 1.15; padding-bottom: 7px; border-bottom: 2px solid var(--navy); }
+.pc-head { font-family: var(--font-heading); font-size: 0.74rem; font-weight: 500; letter-spacing: 1.3px; text-transform: uppercase; color: var(--columbia-text); margin: 9px 0 4px; }
+.pc-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 6px; }
+.pc-stat { display: flex; flex-direction: column; }
+.pc-stat dt { font-size: 0.74rem; line-height: 1; color: #4e6079; }
+.pc-stat dd { font-family: var(--font-heading); font-size: 1.08rem; font-weight: 500; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.pc-none { margin: auto 0; font-size: 1rem; color: #4e6079; text-align: center; }
+.pc-back-foot { margin-top: auto; padding-top: 6px; font-size: 0.74rem; color: #4e6079; }
+@media (max-width: 520px) {
+  .pc-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .pc-name { font-size: 1.1rem; }
+  .pc-sub { font-size: 0.9rem; }
+  .pc-size { font-size: 0.82rem; }
+  .pc-front { padding: 12px; }
+  .pc-back { padding: 10px; }
+  .pc-back-name { font-size: 0.92rem; }
+  .pc-stat dd { font-size: 0.96rem; }
+  .pc-head { margin-top: 6px; font-size: 0.68rem; }
+  .pc-back-foot { display: none; }
+}
+
+/* --- Season chart --- */
+.season-chart-wrap { background: var(--navy); color: var(--white); border-radius: 14px; padding: 22px 24px 18px; box-shadow: 0 14px 30px rgba(4, 30, 66, 0.25); }
+.sc-legend { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 1rem; color: #bcdcf5; margin-bottom: 8px; }
+.sc-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sc-legend i { display: inline-block; width: 13px; height: 13px; border-radius: 3px; }
+.sc-legend .k-w { background: var(--columbia); }
+.sc-legend .k-t { background: #fff; }
+.sc-legend .k-l { background: #5f7fa6; }
+.sc-legend .k-n { background: none; border: 1px dashed #7f9cc0; }
+#seasonChart svg { display: block; width: 100%; height: auto; min-width: 640px; }
+.sc-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.sc-grid { stroke: rgba(255, 255, 255, 0.1); }
+.sc-base { stroke: rgba(255, 255, 255, 0.45); }
+.sc-tick, .sc-year { font-family: var(--font-main); font-size: 15px; fill: #bcdcf5; font-variant-numeric: tabular-nums; }
+.sc-tick { text-anchor: end; }
+.sc-year { text-anchor: middle; }
+.sc-hit { fill: transparent; }
+.sc-season { cursor: pointer; outline: none; }
+.sc-w, .sc-l { transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms), opacity 0.2s; transform-box: fill-box; }
+.sc-w { fill: var(--columbia); transform-origin: 50% 100%; }
+.sc-l { fill: #5f7fa6; transform-origin: 50% 0; }
+.sc-wait .sc-w, .sc-wait .sc-l { transform: scaleY(0); }
+.sc-title .sc-w { fill: #fff; }
+.sc-pennant { fill: #fff; transition: opacity 0.4s 0.9s; }
+.sc-wait .sc-pennant { opacity: 0; }
+.sc-empty { fill: none; stroke: #7f9cc0; stroke-dasharray: 3 3; }
+.sc-season.active .sc-hit, .sc-season:focus-visible .sc-hit { fill: rgba(105, 179, 231, 0.16); }
+.sc-readout { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; min-height: 58px; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.16); }
+.sc-readout strong { font-family: var(--font-display); font-weight: 400; font-size: 1.9rem; color: var(--columbia); }
+.sr-rec { font-family: var(--font-heading); font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.sr-note { font-size: 1.08rem; color: #d3e6f6; flex: 1 1 260px; }
+.sc-table { margin-top: 12px; color: #d3e6f6; }
+.sc-table summary { cursor: pointer; font-size: 1rem; color: #bcdcf5; }
+.sc-table table { width: 100%; margin-top: 8px; border-collapse: collapse; font-size: 1rem; font-variant-numeric: tabular-nums; }
+.sc-table th, .sc-table td { text-align: left; padding: 4px 10px 4px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.sc-source { margin-top: 10px; font-size: 0.95rem; color: #a9c8e4; }
+.still-active {
+  display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; vertical-align: 1px;
+  font-family: var(--font-heading); font-size: 0.68rem; letter-spacing: 0.8px; text-transform: uppercase;
+  background: var(--navy); color: var(--white); white-space: nowrap;
+}
+
+/* --- Alumni map --- */
+.em-lede { text-align: center; color: #d3e6f6; font-size: 1.2rem; margin: -6px auto 22px; max-width: 62ch; }
+.em-layout { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(250px, 1fr); gap: 22px; align-items: start; }
+.em-svg { width: 100%; height: auto; display: block; }
+.em-land path { fill: rgba(105, 179, 231, 0.11); stroke: rgba(105, 179, 231, 0.34); stroke-width: 0.8; }
+.em-arc {
+  fill: none; stroke: var(--columbia); stroke-width: 1.5; opacity: 0.55;
+  stroke-dasharray: 1; stroke-dashoffset: 0; transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s, stroke-width 0.2s;
+}
+.em-wait .em-arc { stroke-dashoffset: 1; }
+.em-hit { fill: transparent; }
+.em-dot { fill: var(--columbia); stroke: var(--navy); stroke-width: 2; transition: fill 0.2s; }
+.em-count { fill: var(--navy); font-family: var(--font-heading); font-size: 14px; font-weight: 600; text-anchor: middle; pointer-events: none; }
+.em-home circle { fill: #fff; }
+.em-spot { cursor: pointer; outline: none; }
+.em-spot:hover .em-dot, .em-spot.active .em-dot, .em-spot:focus-visible .em-dot { fill: #fff; }
+.em-spot.active .em-arc, .em-spot:hover .em-arc { opacity: 1; stroke-width: 2.5; }
+.em-list { list-style: none; max-height: 520px; overflow-y: auto; scrollbar-color: rgba(105, 179, 231, 0.5) transparent; scrollbar-width: thin; }
+.em-place { border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+.em-place button {
+  display: flex; justify-content: space-between; align-items: center; width: 100%; min-height: 44px; padding: 8px 4px;
+  background: none; border: 0; color: var(--white); cursor: pointer; font-family: var(--font-heading); font-size: 1.05rem; letter-spacing: 0.4px; text-align: left;
+}
+.em-place-count { color: var(--columbia); font-variant-numeric: tabular-nums; }
+.em-place.active .em-place-name { color: var(--columbia); }
+.em-place ul { list-style: none; display: none; padding: 0 4px 10px; }
+.em-place.active ul { display: block; }
+.em-place li li { padding: 3px 0; font-size: 1.05rem; color: #d3e6f6; }
+.em-place li li strong { color: var(--white); font-weight: 600; }
+.em-place li li em { font-style: normal; font-size: 0.85rem; color: var(--columbia); margin-left: 3px; }
+@media (max-width: 860px) {
+  .em-layout { grid-template-columns: 1fr; }
+  .em-list { max-height: none; }
+}
+
+/* --- Season calendar buttons --- */
+.cal-subscribe { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 12px; margin: 0 auto 30px; }
+.cal-subscribe p { flex: 1 1 100%; text-align: center; font-size: 1.15rem; color: var(--gray-800); }
+.cal-btn {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 8px 20px; border-radius: 999px;
+  border: 1px solid var(--navy); color: var(--navy); background: transparent;
+  font-family: var(--font-heading); font-size: 0.92rem; letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.cal-btn:hover { background: var(--navy); color: var(--white); }
+
+/* --- Film --- */
+.film-section { background: #02122a; padding: 56px 20px; }
+.film-frame { max-width: 1040px; margin: 0 auto; }
+.film-frame video { display: block; width: 100%; height: auto; border-radius: 12px; background: var(--navy); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pc, .pc-inner, .sc-w, .sc-l, .em-arc, .sc-pennant { transition: none; }
+}
