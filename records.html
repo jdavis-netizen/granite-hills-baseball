@@ -53,23 +53,38 @@
       <nav class="main-nav" id="mainNav">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="roster.html">Roster</a></li>
-          <li><a href="schedule.html">Schedule</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="stats.html">Stats</a></li>
-          <li><a href="news.html">News</a></li>
-          <li><a href="coaches.html">Coaches</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="records.html" class="active">Records</a></li>
-          <li><a href="alumni.html">Alumni</a></li>
-          <li><a href="tracker.html">Tracker</a></li>
-          <li><a href="quiz.html">Quizzes</a></li>
-          <li><a href="https://granitehillsbaseball.itemorder.com/shop/home/" target="_blank">Shop</a></li>
+          <li class="nav-group">
+            <button type="button" class="nav-group-toggle" aria-expanded="false" aria-controls="nav-games">Schedule &amp; Scores</button>
+            <ul class="nav-sub" id="nav-games">
+              <li><a href="schedule.html">Schedule</a></li>
+              <li><a href="scores.html">Scores</a></li>
+            </ul>
+          </li>
+          <li class="nav-group">
+            <button type="button" class="nav-group-toggle" aria-expanded="false" aria-controls="nav-team">Team</button>
+            <ul class="nav-sub" id="nav-team">
+              <li><a href="roster.html">Roster</a></li>
+              <li><a href="coaches.html">Coaches</a></li>
+              <li><a href="stats.html">Stats</a></li>
+              <li><a href="quiz.html">Quizzes</a></li>
+            </ul>
+          </li>
+          <li class="nav-group">
+            <button type="button" class="nav-group-toggle active" aria-expanded="false" aria-controls="nav-program">Program</button>
+            <ul class="nav-sub" id="nav-program">
+              <li><a href="news.html">News</a></li>
+              <li><a href="records.html" class="active">Records</a></li>
+              <li><a href="alumni.html">Alumni</a></li>
+              <li><a href="tracker.html">Player Tracker</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+          </li>
+          <li><a href="https://granitehillsbaseball.itemorder.com/shop/home/" target="_blank" rel="noopener">Shop</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="new-player.html" class="nav-signup">Sign Up</a></li>
+          <li class="nav-signup-item"><a href="new-player.html" class="nav-signup">Sign Up</a></li>
         </ul>
       </nav>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
         <span></span><span></span><span></span>
       </button>
     </div>

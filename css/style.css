@@ -1658,8 +1658,8 @@ body { background: #F3F6FA; }
 .main-nav a:hover::after, .main-nav a.active::after { transform: scaleX(1); }
 .hamburger span { background: var(--columbia); }
 
-/* Collapse to the menu button earlier: 15 links need ~1280px */
-@media (max-width: 1279px) {
+/* Below this width the menu collapses to the menu button */
+@media (max-width: 1023px) {
   .hamburger { display: flex; }
   .main-nav {
     display: none;
@@ -2307,7 +2307,7 @@ html.meeting-live .main-nav a.nav-signup:not(.show-me) { animation: signupPulse 
   50%      { box-shadow: 0 0 0 7px rgba(255,255,255,0.35), 0 0 34px rgba(105,179,231,0.95); }
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1023px) {
   .main-nav a.nav-signup {
     margin: 10px 0 2px;
     padding: 13px 14px;
@@ -2525,7 +2525,7 @@ html.meeting-live .main-nav a.nav-signup:not(.show-me) { animation: signupPulse 
 
 /* 15 menu items: widen only the header bar (page content stays 1200px) and tighten the tabs a little */
 .header-inner { max-width: 1320px; }
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   .logo-text h1 { font-size: 1.15rem; }
   .main-nav a { padding: 8px 6px; }
   .main-nav a::after { left: 6px; right: 6px; }
@@ -2560,4 +2560,143 @@ html.meeting-live .main-nav a.nav-signup:not(.show-me) { animation: signupPulse 
 @media (max-width: 600px) {
   .wb-list-cols { grid-template-columns: 1fr; }
   .wb-list li { grid-template-columns: 70px minmax(0, 1fr) auto; }
+}
+
+/* --- Grouped main menu --- */
+.nav-group { position: relative; }
+.nav-group-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 7px;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: rgba(255,255,255,0.85);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-group-toggle::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.nav-group-toggle[aria-expanded="true"]::after { margin-top: 3px; transform: rotate(225deg); }
+.nav-group-toggle:hover { background: rgba(105,179,231,0.08); color: var(--white); }
+.nav-group-toggle.active { color: var(--columbia); }
+.main-nav .nav-sub { display: none; flex-direction: column; gap: 0; }
+.main-nav .nav-group.open > .nav-sub { display: flex; }
+.main-nav > ul { align-items: center; }
+
+@media (min-width: 1024px) {
+  .main-nav a { min-height: 44px; display: flex; align-items: center; }
+  .main-nav a::after { bottom: 6px; }
+  .main-nav a.nav-signup { min-height: 0; padding: 9px 16px; }
+  .main-nav .nav-sub {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 190px;
+    padding: 6px;
+    background: #041E42;
+    border: 1px solid rgba(105,179,231,0.25);
+    border-radius: 8px;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.35);
+  }
+  .main-nav .nav-sub a { padding: 10px 12px; font-size: 0.85rem; }
+  .main-nav .nav-sub a::after { display: none; }
+  .main-nav .nav-sub a.active { background: rgba(105,179,231,0.12); }
+}
+@media (min-width: 1024px) and (hover: hover) {
+  .main-nav .nav-group:hover > .nav-sub { display: flex; }
+}
+
+@media (max-width: 1023px) {
+  .hamburger { flex: 0 0 44px; width: 44px; height: 44px; align-items: center; justify-content: center; padding: 0; }
+  .hamburger span { transform-origin: center; }
+  .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  html.nav-open { overflow: hidden; }
+  .main-nav {
+    max-height: calc(100vh - 58px);
+    max-height: calc(100dvh - 58px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .main-nav > ul { align-items: stretch; }
+  .main-nav .nav-signup-item { order: -1; }
+  .main-nav a.nav-signup { margin: 4px 0 8px; }
+  .nav-group-toggle {
+    justify-content: space-between;
+    width: 100%;
+    min-height: 50px;
+    padding: 13px 14px;
+    border-bottom: 1px solid rgba(105,179,231,0.12);
+    border-radius: 0;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+  }
+  .nav-group-toggle::after { width: 8px; height: 8px; margin-right: 4px; }
+  .main-nav .nav-sub { background: rgba(105,179,231,0.06); }
+  .main-nav .nav-sub a { padding-left: 28px; }
+}
+
+/* --- Next game strip in the hero --- */
+.hero-next {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  max-width: 100%;
+  margin: 0 auto 22px;
+  padding: 12px 24px;
+  background: rgba(2,19,43,0.78);
+  border: 1px solid rgba(105,179,231,0.45);
+  border-radius: 10px;
+  color: var(--white);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.hero-next[hidden] { display: none; }
+.hero-next:hover { background: rgba(2,19,43,0.92); border-color: var(--columbia); color: var(--white); }
+.hero-next-label {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--columbia);
+}
+.hero-next-opp { font-family: var(--font-heading); font-size: 1.5rem; line-height: 1.15; text-wrap: balance; }
+.hero-next-when { font-size: 0.95rem; text-wrap: balance; }
+
+/* --- Closing invitation --- */
+.join-section { padding: 72px 0; background: #02132B; color: var(--white); }
+.join-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 56px; align-items: center; padding-inline: 20px; }
+.join-copy h2 {
+  margin: 0 0 14px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  color: var(--white);
+  text-wrap: balance;
+}
+.join-copy p { max-width: 46ch; margin: 0 0 26px; font-size: 1.1rem; color: rgba(255,255,255,0.86); }
+.join-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.join-photo { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 18px 40px rgba(0,0,0,0.4); }
+@media (max-width: 760px) {
+  .join-section { padding: 52px 0; }
+  .join-inner { grid-template-columns: 1fr; gap: 32px; }
+  .join-photo { max-width: 300px; margin: 0 auto; }
 }

@@ -65,12 +65,44 @@
   function pad(value) { return (value < 10 ? "0" : "") + value; }
   function plural(value, word) { return value + " " + word + (value === 1 ? "" : "s"); }
 
+  // ---- next game in the hero and next three games in the homepage schedule -------------------
+  function escapeHtml(text) {
+    return String(text).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
+  }
+  function matchup(game) {
+    if (isOppTba(game)) return shortOpp(game);
+    if (game.away) return "@ " + game.opp;
+    return (/tba/i.test(game.site || "") ? "" : "vs ") + game.opp;
+  }
+  function timeOf(game) { return game.time ? game.timeText : "Time TBA"; }
+  function dateOf(game) { return String(game.label || "").replace(",", ""); }
+  function fillNextGames() {
+    var games = upcoming(now());
+    var hero = document.querySelector("[data-hero-next]");
+    if (hero && games.length) {
+      var next = games[0].game;
+      hero.innerHTML = '<span class="hero-next-label">Next Game</span>' +
+        '<span class="hero-next-opp">' + escapeHtml(matchup(next)) + "</span>" +
+        '<span class="hero-next-when">' + escapeHtml(dateOf(next) + " \u2022 " + timeOf(next) + " \u2022 " + shortSite(next)) + "</span>";
+      hero.hidden = false;
+    }
+    var list = document.querySelector("[data-next-games]");
+    if (list && games.length) {
+      list.innerHTML = games.slice(0, 3).map(function (entry) {
+        var game = entry.game;
+        return '<li><span class="sd">' + escapeHtml(dateOf(game)) + '</span><span class="wb-opp"><span class="so">' + escapeHtml(matchup(game)) +
+          '</span><span class="wb-site">' + escapeHtml(game.site || "") + '</span></span><span class="st">' + escapeHtml(game.time ? game.timeText : "TBA") + "</span></li>";
+      }).join("");
+    }
+  }
+
   // ---- motion -------------------------------------------------------------------------------
   var OUT = 340, BACK = 560, SETTLE = 1300;
   function easeInOut(t) { return 0.5 - 0.5 * Math.cos(Math.PI * t); }
   function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
   function init() {
+    fillNextGames();
     var root = document.querySelector(".scoreboard-section");
     if (!root || root.getAttribute("data-ready")) return;
     root.setAttribute("data-ready", "1");

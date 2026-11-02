@@ -6,15 +6,68 @@ document.addEventListener('DOMContentLoaded', function () {
   const mainNav = document.getElementById('mainNav');
 
   if (hamburger && mainNav) {
+    const groups = mainNav.querySelectorAll('.nav-group');
+
+    function closeGroups(except) {
+      groups.forEach(function (group) {
+        if (group === except) return;
+        group.classList.remove('open');
+        group.querySelector('.nav-group-toggle').setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // The open menu never runs past the bottom of the screen; it scrolls instead.
+    function fitMenu() {
+      if (!mainNav.classList.contains('open')) return;
+      mainNav.style.maxHeight = (window.innerHeight - mainNav.getBoundingClientRect().top) + 'px';
+    }
+
+    function setMenu(open) {
+      mainNav.classList.toggle('open', open);
+      document.documentElement.classList.toggle('nav-open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      if (open) fitMenu();
+      else closeGroups();
+    }
+
     hamburger.addEventListener('click', function () {
-      mainNav.classList.toggle('open');
+      setMenu(!mainNav.classList.contains('open'));
+    });
+
+    groups.forEach(function (group) {
+      const toggle = group.querySelector('.nav-group-toggle');
+      toggle.addEventListener('click', function () {
+        const open = !group.classList.contains('open');
+        closeGroups(group);
+        group.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      });
     });
 
     // Close nav when clicking a link (mobile)
     mainNav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        mainNav.classList.remove('open');
-      });
+      link.addEventListener('click', function () { setMenu(false); });
+    });
+
+    // Close with Escape or a click anywhere outside the menu
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (mainNav.classList.contains('open')) {
+        setMenu(false);
+        hamburger.focus();
+      } else {
+        closeGroups();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (mainNav.contains(e.target) || hamburger.contains(e.target)) return;
+      if (mainNav.classList.contains('open')) setMenu(false);
+      else closeGroups();
+    });
+    window.addEventListener('resize', function () {
+      if (getComputedStyle(hamburger).display === 'none') setMenu(false);
+      else fitMenu();
     });
   }
 
@@ -116,7 +169,7 @@ function handleContact(e) {
       var nav = document.getElementById('mainNav');
       var burger = document.getElementById('hamburger');
       if (burger && nav && getComputedStyle(burger).display !== 'none' && !nav.classList.contains('open')) {
-        nav.classList.add('open');
+        burger.click();
       }
       tab.classList.remove('show-me');
       void tab.offsetWidth; // restart the animation on repeat clicks
